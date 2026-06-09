@@ -5,7 +5,10 @@
 ## 0. 封面 + logo + 图标（默认件）
 
 - **封面默认有**：大图作底（无图时用紫光径向渐变兜底）+ 品牌 glyph + 大标题/副标/lead + 角标。换成真素材时把 `.cv-bg` 的 background 改成 `url(图)`。
-- **logo 默认有**：模板内置一个 inline SVG 默认 mark（渐变圆角方块 + 白色递增条），封面用浅色版、灰底页 `.brand .logo` 用深色版。换成自家 logo（img 或 svg）即可。
+- **logo 默认有，且必须备深/浅两版**（这是常踩的坑）：
+  - **深色底**（封面 `.cv-logo`、黑底设计点页）→ 用 **白色 / 反白版** logo（如 `cann-dark-logo.svg`）。⚠️ 别把深色 logo 放深色底上——会几乎看不见（只剩彩色部件），曾因此返工。
+  - **浅色底**（灰底分析页 head 的 `.brand .logo`）→ 用**深色 / 彩色版** logo（如 `CANNlogo.png`）。
+  - 一律用 `<img src="…">` 引用（svg/png 皆可），别手敲文字拼 logo（字形对不上真 logo）。没有现成版本就找用户要，或对单色 logo 用 `filter:brightness(0) invert(1)` 反白（会丢彩色部件，慎用）。
 - **图标按需用，别每个区块标题都顶一个**（默认模板不放）。真实 deck 只在少数地方用，如画像页「岗位特征」的圈形图标。需要时用 `.icon-sq`（accent 淡底圆角方块）+ **Lucide 风格线性 SVG**（`stroke:currentColor;stroke-width:1.8;fill:none`）：
   ```html
   <span class="icon-sq" style="width:34px;height:34px;border-radius:9px;background:var(--accent-soft);color:var(--accent);display:inline-flex;align-items:center;justify-content:center">
