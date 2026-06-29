@@ -11,6 +11,7 @@
 
 ## 翻页 / 概览
 
+- **总览页（按 O）悬浮缩略图显示页码**（好用的小功能）：纯 CSS counter——`body.overview #deck{counter-reset:slideno}` + `body.overview .slide{counter-increment:slideno}` + `body.overview .slide:hover::after{content:counter(slideno);position:absolute;bottom:7px;right:8px;...;opacity:0→1}`（默认隐藏、hover 浮出；`z-index` 要高于缩放的 `.slide-inner`，否则被盖住）。页码与翻页器一致、不用 JS。
 - **`body.ctrl{overflow:hidden}`（受控叠层翻页模式 fade/cut/slide-h/magic）会一直锁住 body 滚动**：进总览 `enterOverview()` 只加了 `.overview` 类，没摘掉 `.ctrl`；如果总览缩略图网格高度超过一屏，`body.overview.ctrl` 这条规则必须**显式把 `overflow` 改回 `hidden auto`**，否则总览页在这几种翻页模式下会出现"滚不动、看不到后面的缩略图"——默认 `slide` 模式不受影响（body 本来就能滚），只有切到非默认翻页模式才会踩到，容易被漏测。
 
 ## 字号
