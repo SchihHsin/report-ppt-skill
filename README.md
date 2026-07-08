@@ -55,14 +55,15 @@ git clone git@github.com:SchihHsin/report-ppt-skill.git <项目>/.claude/skills/
 
 ## 用法
 
-1. 复制 `assets/deck-template.html` 作为起点（已含字体、token、base、导航 + **8 个精调样例页**覆盖三基调）。
-2. 删改样例页，从 `references/components.md` 取更多组件骨架。
+1. 复制 `assets/deck-template.html` 作为起点（已含字体、token、base、导航 + 精调样例页覆盖三基调）。
+2. 删改样例页，从 `references/components.md` 顶部「选件路由」选择组件；高级 pattern 可从 `assets/template-library/index.html` 复制对应 `data-template` 页面。
 3. 浏览器打开自检（试不同翻页过渡加 `?t=fade|cut|slide-h|magic`）。
 
 样例页：① 封面 ② 关键指标(多彩渐变胶囊) ③ 竞品对照 ④ 用户画像·形式一 ⑤ 甘特 roadmap ⑥ 黑底章节封面(调色面板·localStorage 持久记忆) ⑦ 黑底设计点·版式①左文右图 ⑧ 黑底设计点·版式②上下堆叠 hero。
 
 > ⚠️ 用户画像有**三套形式（一/二/三），按内容三选一**：正式深描单人→形式一、多角色雷达对比→形式二、白板便利贴速写单人→形式三（详见 `components.md §6a/§6b/§6c`）。
 > ⚠️ 黑底设计点有**两种版式**：①左文右图（要点多）/ ②上下堆叠 hero（大图为主），见 `components.md §8`。
+> ⚠️ 矩阵/评分表逐条讲解用 `evidence-spotlight-matrix`；问题推导成结论用 `derivation-column-flow`。两者已沉淀在 `assets/template-library/index.html`。
 
 ## 目录结构
 
@@ -71,6 +72,7 @@ SKILL.md                  主文件（三基调 / 工作流 / 铁律 / 索引）
 references/               规范与组件骨架
 assets/
   deck-template.html      7 页起手模板
+  template-library/       可复制高级 pattern 模板库（带 data-template 元信息）
   cover-bg.png · cann-dark-logo.svg · CANNlogo.png · persona.svg · cmp-*.jpg   示例素材
 ```
 
@@ -79,6 +81,13 @@ assets/
 `assets/` 里的封面图、CANN logo、竞品截图等**仅作排版示例**，用于演示组件效果。**套用到你自己的材料时请替换成自己的素材**；其中第三方产品截图、品牌 logo 版权归各自所有，请勿直接商用或再分发。
 
 ## 更新日志
+
+### 2026-07 — 沉淀矩阵聚光灯与四栏推导流
+
+- 新增 `assets/template-library/index.html`：完整可复制模板库，页面统一带 `data-template / data-component / data-title`。
+- 新增 `components.md §15 证据矩阵聚光灯`，`data-template="evidence-spotlight-matrix"`：用于从矩阵 / 评分表中圈选证据、浮出解释卡片、手动分页讲解问题。
+- 新增 `components.md §16 四栏推导流`，`data-template="derivation-column-flow"`：用于把“证据信号 → 机制归因 → 改造机会 → 后续结论”串成一页推导叙事，含竖栏样式、自动 Space Between 间距和连线机制。
+- `components.md` 顶部路由表扩展为「用户可能怎么说 → 命中组件 → data-template → 判断标准」，继续作为唯一选件路由入口。
 
 ### 2026-06 — 默认正文再调大到 15–18px
 - `--fs-body` `clamp(13.5,1vw,16)` → **`clamp(15,1.12vw,18)`**（1440≈16 / 1920 封顶 18），h3/h2/sm 同步上挪保证层级（h3≥body）；用户画像 `.pf/.pp/.up` 局部小字档不变。

@@ -46,6 +46,16 @@
 ## G. 测量代替猜（铁律）
 - 任何"对不齐 / 太高 / 被裁"，**用无头 Chrome 截图 + `getBoundingClientRect()` 量像素**，别肉眼猜（详见 `pitfalls.md`）。注入一段在 load 后把目标元素 `top/bottom/height/scrollHeight` 写进 `position:fixed` 黑底绿字 div、截图读数即可；数字小用 PIL crop+resize 放大。多实例打架先 `pkill -f "Google Chrome"`。
 
+## H. 交互讲解页（矩阵聚光灯 / 四栏推导）
+- [ ] **证据矩阵聚光灯**（`evidence-spotlight-matrix`）：总览状态没有额外问题说明卡；问题解释只出现在 `.spot-callout` / `.hm-callout` 内。
+- [ ] 聚光灯状态下：被圈选的行 / 列 / 格子清晰，其余区域降透明；虚线框只有描边、无 background，且不被表格卡片边缘裁切。
+- [ ] `.spot-callout` 在大卡片内部浮出，不覆盖页眉 / 页脚；翻到每一页都不会超出 `.spot-card`。
+- [ ] 如果一个问题对应多个不连续区域，画多个 ring；不要用一个大框把无关区域也圈进去。
+- [ ] **四栏推导流**（`derivation-column-flow`）：四列宽度一致，标题在竖栏外；竖栏内部不是小卡片堆叠，而是 `.ditem` 直接排列。
+- [ ] 运行 `balanceDeriveColumns()` 后，每列上下 padding 与条目间 gap 视觉接近；内容没有全部堆在上半部分。
+- [ ] 连线是“某条文字 → 某条文字”的关系，不是栏连栏；起点靠近来源文字右侧，终点靠近目标 icon / 序号左侧；空心圆内部不穿线、终点实心圆对准。
+- [ ] Step 04 写后续结论 / 行动页编号，不要再写一遍“推导结论”；每条都能回溯到 Step 01 的一个或一组信号。
+
 ---
 
 > 一句话纪律：**填现成槽位、别手搓几何；放不下就删/拆，别缩字；每个 flex/grid 子项都 `min-height:0`；改完逐页跑本表。**

@@ -6,27 +6,30 @@
 
 > **复用本 skill 时最容易翻车的一步：识别不出用户的大白话对应哪个精调件，于是手搓一个更丑的版本。** 看到下面任一类内容/说法，**别自造排版**——直接翻到对应小节照抄骨架。用户很少说出组件的「学名」（VOC 墙 / 用户旅程…），要靠**意图**命中。
 
-| 用户可能这么说（中英文均算） | 命中的件 | 一句话判据 |
-|---|---|---|
-| 几个大数字/百分比/转化率/达成率/KPI overview/metrics/数据概览/关键指标/核心数据 | **§1 渐变胶囊指标** | 3 个左右**带进度感的百分比**唱主角 → 多彩胶囊条 |
-| 计划/排期/里程碑/时间线/roadmap/甘特/泳道/sprint/Q1Q2/阶段规划/什么时候上线/路线图 | **§2 甘特 roadmap** | **带时间轴的条**（谁在哪个区间做） → 浮动甘特条 |
-| 用户反馈/原声/吐槽/访谈摘录/语录/VOC/voice of customer/调研摘要/客户怎么说/痛点引用/把这些话整理一下 | **§3 VOC 声音墙** | 一堆**长短不一的引用/评论**要陈列 → 瀑布流声音墙 |
-| 全流程/端到端/各阶段/触点/情绪曲线/journey/journey map/全链路/操作步骤的痛点/用户怎么一步步做/流程断裂点 | **§4 用户旅程** | 内容**按阶段推进**、想看每阶段情绪/痛点 → 行旅程网格 |
-| 竞品/友商/对手/同类工具/横向对比/benchmark/competitive analysis/A vs B/选型/市面方案/竞品矩阵 | **§5 竞品对照** | **2~3 个同类产品**摆开比 + 给结论 → 三卡 + 对策条 |
-| 介绍某个用户/他是谁/他的日常/角色特征/职责场景痛点/persona/用户画像/用户是谁（**单人·正式深描**） | **§6a 用户画像·形式一** | 讲清楚**一个人**的全貌（职责/场景/痛点）→ 左栏人物 + 右侧多区 |
-| 几类用户有什么不同/角色对比/各角色的敏感程度/能力维度对比/radar/雷达图/多角色对照（**多人对比**） | **§6b 用户画像·形式二** | 展示**多人在若干维度的差异** → 顶栏 + 雷达图（ECharts）|
-| 工作坊/共创/白板式画像/便利贴风 persona/性格+动机+目标+痛点+问题+解法都要（**单人·看板速写**） | **§6c 用户画像·形式三** | 轻快铺开**一个人的方方面面** → 左紫栏档案 + 右便利贴墙 |
-| 卡片底部补几个小数字/附加指标/标签+数值/secondary KPI | **§7 KPI 小数字组** | 嵌在别的卡**底部**，不独占一页 |
-| 设计理念/方案亮点/解法/核心设计点/问题→方案/design concept/我们的答案是 | **§8 黑底设计点** | 讲**方案/主张**，要氛围感 → 黑底光晕 + 渐变标题 |
-| 评分矩阵/能力打分/竞品打分/多对象×多维度热力表/scorecard | **§9 评分热力矩阵** | 手画网格 + JS 渲染（淡底+彩字+表情脸）|
-| 能力架构/体验架构/产品架构/分层框架（目标→场景→…纵向分层）| **§10 分层架构图** | 左标签 + 聚类玻璃卡 |
-| 几个冲击力大数字/效率提升 X%/加速 N×/关键成果/KPI 主打 | **§11 数据突出卡** | 切角玻璃方卡 + 总体说明 |
-| 干系人/利益相关者/生态/stakeholder map/ecosystem/以X为中心的关系图/谁和谁怎么互动 | **§12 生态干系人地图** | 内联 SVG：同心圈层 + 卫星圆 + 辐射关系箭头 |
-| 优先级/机会矩阵/价值×成本/影响×成本/2×2/四象限/impact-effort/quick wins/先做什么 | **§13 2×2 机会矩阵** | bento 四块 + 便利贴散布 + 燕尾箭头轴 |
+| 用户可能这么说（中英文均算） | 命中的件 | data-template | 判断标准 |
+|---|---|---|---|
+| 几个大数字/百分比/转化率/达成率/KPI overview/metrics/数据概览/关键指标/核心数据 | **§1 渐变胶囊指标** | `deck-template:stat-grid` | 3 个左右**带进度感的百分比**唱主角 → 多彩胶囊条 |
+| 计划/排期/里程碑/时间线/roadmap/甘特/泳道/sprint/Q1Q2/阶段规划/什么时候上线/路线图 | **§2 甘特 roadmap** | `deck-template:gantt-roadmap` | **带时间轴的条**（谁在哪个区间做） → 浮动甘特条 |
+| 用户反馈/原声/吐槽/访谈摘录/语录/VOC/voice of customer/调研摘要/客户怎么说/痛点引用/把这些话整理一下 | **§3 VOC 声音墙** | `deck-template:voc-wall` | 一堆**长短不一的引用/评论**要陈列 → 瀑布流声音墙 |
+| 全流程/端到端/各阶段/触点/情绪曲线/journey/journey map/全链路/操作步骤的痛点/用户怎么一步步做/流程断裂点 | **§4 用户旅程** | `deck-template:user-journey` | 内容**按阶段推进**、想看每阶段情绪/痛点 → 行旅程网格 |
+| 竞品/友商/对手/同类工具/横向对比/benchmark/competitive analysis/A vs B/选型/市面方案/竞品矩阵 | **§5 竞品对照** | `deck-template:competitive-compare` | **2~3 个同类产品**摆开比 + 给结论 → 三卡 + 对策条 |
+| 介绍某个用户/他是谁/他的日常/角色特征/职责场景痛点/persona/用户画像/用户是谁（**单人·正式深描**） | **§6a 用户画像·形式一** | `deck-template:persona-profile` | 讲清楚**一个人**的全貌（职责/场景/痛点）→ 左栏人物 + 右侧多区 |
+| 几类用户有什么不同/角色对比/各角色的敏感程度/能力维度对比/radar/雷达图/多角色对照（**多人对比**） | **§6b 用户画像·形式二** | `deck-template:persona-radar` | 展示**多人在若干维度的差异** → 顶栏 + 雷达图（ECharts）|
+| 工作坊/共创/白板式画像/便利贴风 persona/性格+动机+目标+痛点+问题+解法都要（**单人·看板速写**） | **§6c 用户画像·形式三** | `deck-template:persona-workshop` | 轻快铺开**一个人的方方面面** → 左紫栏档案 + 右便利贴墙 |
+| 卡片底部补几个小数字/附加指标/标签+数值/secondary KPI | **§7 KPI 小数字组** | `deck-template:kpi-mini` | 嵌在别的卡**底部**，不独占一页 |
+| 设计理念/方案亮点/解法/核心设计点/问题→方案/design concept/我们的答案是 | **§8 黑底设计点** | `deck-template:glow-design-point` | 讲**方案/主张**，要氛围感 → 黑底光晕 + 渐变标题 |
+| 评分矩阵/能力打分/竞品打分/多对象×多维度热力表/scorecard | **§9 评分热力矩阵** | `deck-template:heatmap-score-matrix` | 手画网格 + JS 渲染（淡底+彩字+表情脸）|
+| 能力架构/体验架构/产品架构/分层框架（目标→场景→…纵向分层）| **§10 分层架构图** | `deck-template:layered-architecture` | 左标签 + 聚类玻璃卡 |
+| 几个冲击力大数字/效率提升 X%/加速 N×/关键成果/KPI 主打 | **§11 数据突出卡** | `deck-template:data-highlight-cards` | 切角玻璃方卡 + 总体说明 |
+| 干系人/利益相关者/生态/stakeholder map/ecosystem/以X为中心的关系图/谁和谁怎么互动 | **§12 生态干系人地图** | `deck-template:stakeholder-map` | 内联 SVG：同心圈层 + 卫星圆 + 辐射关系箭头 |
+| 优先级/机会矩阵/价值×成本/影响×成本/2×2/四象限/impact-effort/quick wins/先做什么 | **§13 2×2 机会矩阵** | `deck-template:opportunity-matrix-2x2` | bento 四块 + 便利贴散布 + 燕尾箭头轴 |
+| 任何「图 / 图表 / 表格 / mockup + 一段说明文字」的页（旅程/VOC/矩阵等已有专属版式的除外） | **§14 图+文 sm2 模式** | `deck-template:sm2-figure-text` | 左 h2 结论+段落+黑底结论条，右图/表/占位 |
+| 矩阵/评分表已经有了，想一条一条圈出来讲；聚光灯/spotlight/高亮某几格/解释某个评分差距/手动翻问题 | **§15 证据矩阵聚光灯** | `evidence-spotlight-matrix` | 主体是**矩阵或评分表**，需要圈选局部证据并浮出解释卡片 |
+| 从问题推导到结论/问题→原因→做法→结论/把前面发现收束成行动/几栏推导/竖栏推导/推理链路 | **§16 四栏推导流** | `derivation-column-flow` | 需要展示**证据链和叙事推导**，而不是单纯列问题卡 |
 
 判不准时，按主体：**数字进度**→§1，**时间轴**→§2，**引用堆**→§3，**分阶段流程**→§4，**多产品比**→§5，**正式讲透一个人**→§6a，**多人维度对比**→§6b，**白板式速写一个人**→§6c，**讲方案**→§8，**打分表**→§9，**分层架构**→§10，**大数字主打**→§11，**干系人关系图**→§12，**优先级/机会四象限**→§13。命中后翻到该节，照抄骨架 + 参考填充示例，只改文案/配色。
 
-> §9–§13 是手画 pattern（评分矩阵需配套 JS 渲染；干系人地图是单张内联 SVG）。布局型 pattern（洋葱圈 / 共情图 / 服务蓝图 / 亲和图 / 双钻）待补。
+> §9–§16 是手画 / 交互 pattern（评分矩阵、证据聚光灯需配套 JS 渲染；干系人地图是单张内联 SVG；四栏推导流有连线与自动间距脚本）。布局型 pattern（洋葱圈 / 共情图 / 服务蓝图 / 亲和图 / 双钻）待补。
 
 ## 0. 封面 + logo（默认件）· ⛔ 标题前不放图标
 
@@ -1075,3 +1078,170 @@ HTML：`.dh-wrap` = `.dh-lead`(总体说明) + `.dh`(3 张 `.dh-card`)；每张 
 </div>
 ```
 > 写文案的口诀：**h2 = 一句话的发现**（"调试 + 调优合计占 63%"），**p = 数据 + bold 关键词**，**cx-concl = 行动 / 下一步**。三层各占一种语气：发现 → 解释 → 行动。
+
+## 15. 证据矩阵聚光灯（矩阵 / 评分表局部圈选 + 卡片解释）
+
+> **data-template**：`evidence-spotlight-matrix`
+>
+> **命中**：矩阵或评分表已经存在，需要现场讲解“问题从哪里来”；用户会说“圈起来矩阵的哪部分”“聚光灯”“高亮某几列/几行/几格”“别把问题生硬加在矩阵上”“卡片靠近高亮位置”“手动翻页讲几个问题”。
+>
+> **核心叙事**：主体不是问题卡墙，而是**证据表本身**；每一步只圈出一组证据，其他内容降透明，解释卡片在表格卡片内部浮出。观众先看到“证据在哪”，再听“它说明什么”。
+
+### 页面结构
+
+- `.spot-wrap`：整页主体，`position:relative;overflow:visible`，承载表格、分页器、圈选框和浮层卡片。
+- `.spot-note`：左侧只放分数渐变图例，右侧放手动分页器（总览 / 1 / 2 / … / 前后按钮）。**不要放问题说明或概览指标卡**，避免把材料讲解文字放到矩阵外面。
+- `.spot-card.card`：一张玻璃卡，里面放 `table` 或 CSS grid 矩阵 + `.spot-callout`。**解释卡片必须在这个大卡片内部浮出**。
+- `.spot-rings` / `.spot-ring`：绝对定位的虚线圈，只有描边，无 background。推荐深灰圆点虚线：`border:2px dotted rgba(55,61,72,.9)`。
+- `.spot-callout`：复用 #17 的浮层卡片：左 icon，中间标题 + 值，右侧细高序号（如 `/01`），正文 + 小 demo/chips。
+
+### 交互机制
+
+1. `focus[]` 维护每一步：`title / val / desc / icon / demo / selector 或 data-issue`。
+2. `setStep(-1)` 是总览：清除高亮、隐藏圈和卡片。
+3. `setStep(i)`：
+   - 给目标行 / 列 / 格子加 `.spot-on`。
+   - 给矩阵整体加 `.is-spot`，让非目标区域透明度降到 `.18` 左右。
+   - 用 `getBoundingClientRect()` 算被高亮元素的外接矩形，绘制 `.spot-ring`。
+   - 根据外接矩形和卡片尺寸自动放置 `.spot-callout`：优先放在高亮右侧；放不下时放左侧；超出上下边界时夹在卡片内。
+4. 分页器只做手动翻页，不自动轮播。右侧 nav dots 对这类页无用时不要再额外加一套。
+
+### 使用注意事项
+
+- **不要额外放 `uxspot` / `uxfocus-top` 这类解释区**。聚光灯页的解释必须进入 `.spot-callout`，而不是表格旁边的静态说明。
+- 圈选框不要 background；只用描边。框要在 `.spot-wrap` 上绝对定位，避免被表格外缘裁切。
+- 如果一个问题对应两个不连续区域，画两个 `.spot-ring`，不要强行用一个大框把无关区域也圈进去。
+- 行聚焦通常圈整行；列聚焦可把列头也纳入外接矩形；多列时只给最左列或第一组加辅助描边，避免视觉太乱。
+- 卡片里的 demo 可以是 chips、迷你条形图、版本列表、搜索路径等，**必须解释被圈出的证据**，不要放无关装饰 icon。
+- 字号：表格主体可用 `--fs-body` / `--fs-sm`，密集矩阵才允许局部降到 7–11px；浮层卡正文必须 `--fs-body`，标题 `--fs-h2`。
+
+### 与 §9 评分热力矩阵的区别
+
+- §9 是**静态评分矩阵模板**，解决“怎么画一张打分表”。
+- §15 是**矩阵讲解模板**，解决“已有表格/矩阵如何逐步圈证据、推出问题”。它可以复用 §9 画出的矩阵，也可以换成普通评分表。
+
+### 最小 HTML 骨架
+
+完整可复制版本见 `assets/template-library/index.html` 中：
+
+```html
+<section class="slide s-gray spot-slide"
+  data-template="evidence-spotlight-matrix"
+  data-component="证据矩阵聚光灯"
+  data-title="证据矩阵聚光灯：圈选矩阵证据并浮出解释卡片">
+  <div class="head">…</div>
+  <div class="body-area">
+    <div class="spot-wrap">
+      <div class="spot-note">
+        <div class="spot-score-legend"><span>低</span><span class="spot-grad"></span><span>高</span></div>
+        <span style="flex:1"></span>
+        <div class="spot-steps" id="spotSteps"></div>
+      </div>
+      <div class="card spot-card">
+        <table class="spot-table" id="spotTable">…<tbody><tr data-issue="0">…</tr></tbody></table>
+        <div class="spot-callout off" id="spotCallout"></div>
+      </div>
+      <div class="spot-rings off" id="spotRings"></div>
+    </div>
+  </div>
+</section>
+```
+
+## 16. 四栏推导流（证据 → 机制 → 做法 → 结论）
+
+> **data-template**：`derivation-column-flow`
+>
+> **命中**：用户希望把“前面发现的问题”推导成“后面的结论/行动”，会说“从前往后推导”“问题→机制→做法→结论”“几栏竖着呈现”“不要只是列问题”“后续结论要和前面问题对应起来”。
+>
+> **核心叙事**：四栏不是四组并列卡片，而是一条推导链：**证据信号**说明问题在哪里，**机制归因**解释为什么发生，**改造机会**给出行动方向，**后续结论**承接到后面的章节或行动页。
+
+### 页面结构
+
+- `.derive`：四列 grid，`grid-template-columns:repeat(4,minmax(0,1fr))`，列宽一致。
+- 每列 = `.dgroup` + `.dh` 标题 + `.dcol` 竖栏。
+- 四种竖栏样式：
+  - `.dcol.signal`：浅玻璃白 / 浅紫，放证据信号。
+  - `.dcol.cause`：黑色渐变，放机制归因。
+  - `.dcol.move`：紫色渐变，放改造机会。
+  - `.dcol.result`：浅紫玻璃，放后续结论链接。
+- 每条内容不是卡片，直接用 `.ditem` 放在竖栏里：左侧线性 icon，右侧 `strong + p + metric`。避免在竖栏里再套小白卡。
+
+### Space Between 与 padding 机制
+
+竖栏内内容要上下均衡，不能全部堆在上半部分。用脚本按实际高度计算：
+
+```js
+function balanceDeriveColumns(){
+  document.querySelectorAll('.derive-slide').forEach(slide=>{
+    slide.querySelectorAll('.dcol').forEach(col=>{
+      const stack=col.querySelector('.dseq,.dlinks'); if(!stack)return;
+      const items=[...stack.children]; if(!items.length)return;
+      stack.style.paddingTop='0px'; stack.style.paddingBottom='0px'; stack.style.gap='0px';
+      const total=items.reduce((sum,el)=>sum+el.getBoundingClientRect().height,0);
+      const unit=Math.max(0,stack.clientHeight-total)/(items.length+1);
+      stack.style.paddingTop=unit+'px';
+      stack.style.paddingBottom=unit+'px';
+      stack.style.gap=unit+'px';
+    });
+  });
+}
+```
+
+这个算法让**上下 padding 与每条内容之间的 gap 相等**，视觉上比固定 `space-between` 更稳定；内容变多或字号变化时自动重算。
+
+### 连线机制
+
+- 用 `<svg class="drel">` 覆盖在 `.derive` 上方，z-index 高于竖栏背景但 `pointer-events:none`。
+- 每条可连接的内容加 `data-rel="xxx-signal"` / `xxx-cause` / `xxx-move` / `xxx-result`。
+- `pairs` 数组声明真实推导关系，不要机械地“栏连栏”。例如：
+
+```js
+const pairs=[
+  ['download-signal','access-cause',''],
+  ['access-cause','download-move','mid'],
+  ['download-move','download-result','purple']
+];
+```
+
+- 起点是来源文字右侧（用文本实际右边界 `textRight()`，不是整块右边界），终点是目标 icon / 序号左侧。这样连线不会离文字太远。
+- 起点画空心圆，终点画实心圆，线宽约 `1.15`，半径约 `2.5`。颜色按段落：1→2 浅灰，2→3 浅紫，3→4 白色或深灰，跟两侧卡片底色保持对比。
+
+### 使用注意事项
+
+- 标题放在竖栏外 `.dh`，不要和竖栏内容混在一起。
+- 每列宽度保持一致；不要为了某列文字多就单独加宽。
+- `.dcol` 左右 padding 要足够大（约 `1.7vh 1.85vw`），否则 icon 和文字会贴边。
+- icon 用线性 SVG / Lucide 风格，放在 `.ditem` 内；不要放在竖栏标题上。
+- Step 04 放“后续结论 / 行动页”，不是再写一遍推导结论。每条结论要能对应前面某条或某组信号。
+- 若逻辑关系没有逐条对应，先改内容分组，再连线；不要为了“每条都有线”硬连无关项。
+
+### 与现有模板的区别
+
+- §4 用户旅程：按时间/阶段展开用户经历。
+- §10 分层架构图：展示系统分层关系。
+- §16 四栏推导流：展示**证据链如何推导出行动结论**，强调叙事逻辑和承接关系。
+
+### 最小 HTML 骨架
+
+完整可复制版本见 `assets/template-library/index.html` 中：
+
+```html
+<section class="slide s-gray derive-slide"
+  data-template="derivation-column-flow"
+  data-component="四栏推导流"
+  data-title="四栏推导流：问题信号到结论行动">
+  <div class="head">…</div>
+  <div class="body-area">
+    <div class="derive">
+      <svg class="drel" aria-hidden="true"></svg>
+      <div class="dgroup signal-g">
+        <div class="dh"><span>Step 01</span><b>证据信号</b></div>
+        <div class="dcol signal"><div class="dseq">
+          <div class="ditem" data-rel="a-signal"><svg>…</svg><strong>问题信号</strong><p>证据描述。</p><div class="metric">指标</div></div>
+        </div></div>
+      </div>
+      <!-- cause / move / result 三列同理 -->
+    </div>
+  </div>
+</section>
+```
