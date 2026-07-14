@@ -15,11 +15,12 @@
 ## 设计规范速览
 
 - **字体**：HarmonyOS Sans SC（鸿蒙黑体，CDN @font-face），等宽标签用 JetBrains Mono。
-- **字号**：6 档 ramp token `--fs-h1/h2/h3/body/sm/xs`，正文/标题分级统一，超大展示数字除外。
-- **颜色**：渐变 token；状态色（红/绿）用同明度·微色相位移；深色大块统一 `--g-ink`。
+- **字号**：6 档 ramp token `--fs-h1/h2/h3/body/sm/xs`，普通页默认对齐 `cann-design-concept/index.html#16` 的 sm2 图文页正文尺度；正文/标题分级统一，超大展示数字除外。
+- **颜色**：渐变 token；状态色（红/绿）用同明度·微色相位移；中性用浅灰渐变 `--g-neutral`；深色大块统一 `--g-ink`。
 - **玻璃折射白卡**：半透明 + `backdrop-filter` + 亮边 + inset 高光。
 - **标题=结论导向**：每页标题直接说出主要发现，不写空泛栏目名。
 - **logo 分深/浅两版按底色选**：深色底用白/反白版，浅色底用深色/彩色版。
+- **头像**：VOC / 用户画像无授权真人照片时，用本地 DiceBear SVG；生成参数、落盘和组件容器统一见 `references/components.md §3a`。
 
 详见 `references/`：`type-and-color.md` · `components.md` · `deck-architecture.md` · `chart-selection.md` · `pitfalls.md` · **`checklist.md`（交付前每页必跑的质检清单）**。
 
@@ -82,6 +83,17 @@ assets/
 
 ## 更新日志
 
+### 2026-07 — 颜色 token、图标与低密度页策略
+
+- 更新全局色彩 token：`--g-blue` 改为更清晰、更亮的蓝色 `#2F6FED → #4B8DFF`，避免与 `--g-purple` 混淆；`--g-pink` 改为玫粉 `#FF4FA3 → #FF7AC8`，避免与 `--g-red` 混淆；`--g-neutral` 从纯色升级为浅灰渐变 `#E4E8EF → #CBD3DF`。`assets/deck-template.html` 与 `assets/template-library/index.html` 均补齐 `red / green / blue / amber / purple / teal / pink / neutral / ink` token。
+- 明确语义：`--g-neutral` 用于中性状态、默认 chip、辅助模块、非重点节点；`--g-ink` 用于目标、总结、结论条、深色重点块。
+- 图标规则沉淀：需要图标时优先使用 Lucide 线性图标；不使用 emoji；页面标题前默认不放装饰图标。
+- 低密度页策略沉淀：内容少时核心结论放在主体上方，用大字呈现；下方 2–3 张卡片只承载证据 / 原因 / 目标。可用大 Lucide 图标占位提升视觉体量，避免少内容页仍然小字、空而散。
+
+### 2026-07 — 头像规范归入组件库
+
+- 将 DiceBear `notionists` 头像规则从踩坑清单整理到 `components.md §3a`：固定人物 seed、`beardProbability=0`、背景色随页面、下载到 `assets/av/` 后本地引用，以及真实人物照片的授权边界。VOC 和三种用户画像可直接按对应容器使用。
+
 ### 2026-07 — 沉淀矩阵聚光灯与四栏推导流
 
 - 新增 `assets/template-library/index.html`：完整可复制模板库，页面统一带 `data-template / data-component / data-title`。
@@ -89,8 +101,8 @@ assets/
 - 新增 `components.md §16 四栏推导流`，`data-template="derivation-column-flow"`：用于把“证据信号 → 机制归因 → 改造机会 → 后续结论”串成一页推导叙事，含竖栏样式、自动 Space Between 间距和连线机制。
 - `components.md` 顶部路由表扩展为「用户可能怎么说 → 命中组件 → data-template → 判断标准」，继续作为唯一选件路由入口。
 
-### 2026-06 — 默认正文再调大到 15–18px
-- `--fs-body` `clamp(13.5,1vw,16)` → **`clamp(15,1.12vw,18)`**（1440≈16 / 1920 封顶 18），h3/h2/sm 同步上挪保证层级（h3≥body）；用户画像 `.pf/.pp/.up` 局部小字档不变。
+### 2026-06 — 普通页正文基准对齐 sm2 图文页
+- 普通分析页默认沿用 `cann-design-concept/index.html#16` 的 sm2 图文页尺度：`--fs-body: clamp(13.5px,1vw,16px)`，1440 宽约 14.4px。高密度时优先从模板库选择合适结构，不把普通页正文继续缩小。
 
 ### 2026-06 — 加交付前质检清单，治"生成出来要大量手调"
 - 新增 `references/checklist.md`：**每页必跑的质检清单**（字号误用 sm/xs、内容溢出 slide、flex/grid 子项漏 `min-height:0`、双层 padding 对不齐、图片裸 `aspect-ratio` 撑破、`min(vw,vh)` 视口比例陷阱、测量代替猜），配 `rg` + 无头截图自查。工作流加"交付前逐页跑 checklist"为关键步。

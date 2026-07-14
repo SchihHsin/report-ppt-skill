@@ -50,8 +50,8 @@
   <div class="stat-bar-area">
     <div class="stat-marks"><span>0</span><span class="stat-tri" style="left:72%">▼</span><span>100%</span></div>
     <div class="stat-pills">
-      <div class="stat-pill" style="flex:72;background:linear-gradient(90deg,#FF6B9D,#FF9340)"></div>
-      <div class="stat-pill" style="flex:28;background:linear-gradient(90deg,#FF9340,#FFE040)"></div>
+      <div class="stat-pill" style="flex:72;background:linear-gradient(90deg,#FF4FA3,#FF7AC8)"></div>
+      <div class="stat-pill" style="flex:28;background:linear-gradient(90deg,#FF7AC8,#FFE040)"></div>
     </div>
   </div>
   <div class="stat-num">72<span class="u">%</span></div>
@@ -71,8 +71,8 @@
     <div class="stat-bar-area">
       <div class="stat-marks"><span>秒级</span><span class="stat-tri" style="left:92%">▼</span><span>30-60 min</span></div>
       <div class="stat-pills">
-        <div class="stat-pill" style="flex:92;background:linear-gradient(90deg,#FF6B9D,#FF9340)"></div>
-        <div class="stat-pill" style="flex:8;background:linear-gradient(90deg,#FF9340,#FFE040)"></div>
+        <div class="stat-pill" style="flex:92;background:linear-gradient(90deg,#FF4FA3,#FF7AC8)"></div>
+        <div class="stat-pill" style="flex:8;background:linear-gradient(90deg,#FF7AC8,#FFE040)"></div>
       </div>
     </div>
     <div class="stat-num">5000<span class="u">×</span></div>
@@ -84,7 +84,7 @@
       <div class="stat-marks"><span>正常</span><span class="stat-tri" style="left:70%">▼</span><span>-70%</span></div>
       <div class="stat-pills">
         <div class="stat-pill" style="flex:70;background:linear-gradient(90deg,#23CFA0,#45D65A)"></div>
-        <div class="stat-pill" style="flex:30;background:linear-gradient(90deg,#45D65A,#667EEA)"></div>
+        <div class="stat-pill" style="flex:30;background:linear-gradient(90deg,#45D65A,#2F6FED)"></div>
       </div>
     </div>
     <div class="stat-num">-70<span class="u">%</span></div>
@@ -95,7 +95,7 @@
     <div class="stat-bar-area">
       <div class="stat-marks"><span>1×</span><span class="stat-tri" style="left:80%">▼</span><span>5×</span></div>
       <div class="stat-pills">
-        <div class="stat-pill" style="flex:80;background:linear-gradient(90deg,#667EEA,#A78BFA)"></div>
+        <div class="stat-pill" style="flex:80;background:linear-gradient(90deg,#2F6FED,#A78BFA)"></div>
         <div class="stat-pill" style="flex:20;background:linear-gradient(90deg,#A78BFA,#FF5A6E)"></div>
       </div>
     </div>
@@ -294,7 +294,7 @@
   .voc-stars{display:flex;gap:2px;color:#E8A93C;font-size:13px;letter-spacing:1px} .voc-stars .off{color:var(--line)}
   .voc-hd{font-family:'Inter','Noto Sans SC';font-weight:700;font-size:max(15px,1.18vw);letter-spacing:-.01em;line-height:1.2;color:var(--ink)}
   ```
-- 头像用 **DiceBear notionists** 生成 SVG（CC0）存本地 `assets/av/`，`beardProbability=0`，`backgroundColor` 跟页面底色。
+- 头像的生成、落盘与使用规则见下方「§3a 头像生成与使用规范」。
 
 ### 填充示例（抄自样板 VOC 页：普通/大引号/大标题/左右/soft 混排）
 
@@ -338,6 +338,16 @@
   </div>
 </div>
 ```
+
+## 3a. 头像生成与使用规范
+
+> **适用**：VOC 引语、用户画像、访谈参与者等需要表现「人物」但没有真实授权照片的场景。它是人物信息的视觉锚点，不是装饰 icon。
+
+- **默认来源**：用 DiceBear 的 `notionists` SVG 占位头像（CC0），生成地址：`https://api.dicebear.com/9.x/notionists/svg?seed=<稳定标识>&beardProbability=0&backgroundColor=<十六进制色>`。
+- **参数**：`seed` 用姓名拼音、角色或匿名编号，保证同一人物跨页长相一致；必须带 `beardProbability=0`，避免出现不符合人物设定的胡子；`backgroundColor` 跟随页面或卡片底色，填**不带 `#`** 的十六进制色值，例如 `E9EBEE`。
+- **落盘**：下载 SVG 到交付文件同级的 `assets/av/`，例如 `mkdir -p assets/av && curl -L "https://api.dicebear.com/9.x/notionists/svg?seed=chen&beardProbability=0&backgroundColor=E9EBEE" -o assets/av/chen.svg`；在 HTML 用相对路径引用，例如 `<img src="assets/av/chen.svg" alt="陈女士">`。交付 deck 不要热链 DiceBear，确保离线可打开、素材版本稳定。
+- **容器**：VOC 使用 `.voc-ava`，正式画像使用 `.pf-portrait`，看板画像使用 `.up-ava`；图片统一 `width:100%;height:100%;object-fit:cover`，让头像服从组件既有比例，不另造头像卡片。
+- **真实人物**：用户提供且确认可用的照片优先于占位头像；没有授权的真实客户、访谈对象不要擅自使用照片，用匿名化的本地 SVG 占位头像即可。
 
 ## 4. 用户旅程（全链路）
 
@@ -1396,7 +1406,7 @@ function textRight(el){
 ### Icon 规则
 
 - icon 放在每条 `.ditem` 内，作为该条内容的语义提示；不要放在竖栏标题上，也不要用一个大水印 icon 代替条目 icon。
-- 使用线性 SVG / Lucide 风格：`fill="none"`、`stroke="currentColor"`、`stroke-width="1.8"`、`stroke-linecap="round"`、`stroke-linejoin="round"`。
+- 优先使用 Lucide 开源图标库（`<i data-lucide="icon-name"></i>` + `lucide.createIcons()`）；只有 Lucide 没有合适语义或需要业务专属概念图时才自绘 SVG。无论哪种方式，都保持线性描边：`fill="none"`、`stroke="currentColor"`、`stroke-width="1.8"`、`stroke-linecap="round"`、`stroke-linejoin="round"`。
 - icon 尺寸 18–22px；在 `.ditem` 中用固定列宽承载，例如 `grid-template-columns:24px 1fr`，保证四栏内文字起点整齐。
 - 深色竖栏里的 icon 用白色或浅紫，浅色竖栏里的 icon 用深灰 / 紫；不要使用 emoji 或系统彩色图标。
 - 如果需要编号型入口（如 Step 04 的结论链接），可以用 `.no` 等宽数字代替 icon，但同一栏内不要混用太多 icon 风格。
@@ -1406,7 +1416,7 @@ function textRight(el){
 - 标题放在竖栏外 `.dh`，不要和竖栏内容混在一起。
 - 每列宽度保持一致；不要为了某列文字多就单独加宽。
 - `.dcol` 左右 padding 要足够大（约 `1.7vh 1.85vw`），否则 icon 和文字会贴边。
-- icon 用线性 SVG / Lucide 风格，放在 `.ditem` 内；不要放在竖栏标题上。
+- icon 优先用 Lucide，放在 `.ditem` 内；不要放在竖栏标题上。
 - Step 04 放“后续结论 / 行动页”，不是再写一遍推导结论。每条结论要能对应前面某条或某组信号。
 - 若逻辑关系没有逐条对应，先改内容分组，再连线；不要为了“每条都有线”硬连无关项。
 

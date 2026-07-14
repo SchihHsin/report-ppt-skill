@@ -58,7 +58,7 @@
 - [ ] 四栏等宽用 `.derive{grid-template-columns:repeat(4,minmax(0,1fr))}`，各列及内部容器都有 `min-width:0;min-height:0`；不得单独加宽某一列。
 - [ ] 运行 `balanceDeriveColumns()` 后，每列上下 padding 与条目间 gap 视觉接近；内容没有全部堆在上半部分。
 - [ ] 连线是“某条文字 → 某条文字”的关系，不是栏连栏；起点靠近来源文字右侧，终点靠近目标 icon / 序号左侧；同一列出线 / 入线的 X 坐标统一，空心圆内部不穿线、终点实心圆对准。
-- [ ] icon 使用线性 SVG / Lucide 风格，放在 `.ditem` 内；不要放在竖栏标题上，不用 emoji，不混用多种图标风格。
+- [ ] icon 优先使用 Lucide，放在 `.ditem` 内；不要放在竖栏标题上，不用 emoji，不混用多种图标风格；Lucide 不适合时才自绘线性 SVG。
 - [ ] Step 04 写后续结论 / 行动页编号，不要再写一遍“推导结论”；每条都能回溯到 Step 01 的一个或一组信号。
 
 ## I. 样式作用域（迁移组件时必查）

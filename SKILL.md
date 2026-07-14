@@ -61,13 +61,13 @@ description: 生成"产品 / 设计 / 研究汇报"风格的单文件网页 PPT�
 - **标题 = 结论导向**：每页标题直接说出该页的「主要发现 / 结论」，不要写空泛词（❌「用户研究」→ ✅「文档、调试、环境是三大核心障碍」）。英文+说明放副标题。
 - **字号只用 6 档 ramp**（h1/h2/h3/body/sm/xs），别手写 `max(13px,.9vw)` 这种。超大展示数字（封面大字、大百分比、章节序号）属 bespoke，不进 ramp。
 - **⛔ 字太小是最常见翻车——三条硬规矩**：① **正文一律 `var(--fs-body)`（≈14px@1440，舒适可读）**；`--fs-sm`/`--fs-xs` **只**给"次要说明 / 标签 / 注释 / 页码"，**绝不拿 sm/xs 当正文**（"整页字都很小"十有八九是正文误用了 sm/xs，或手写了更小的值）。② **内容多 → 精简文案或拆成两页，绝不靠缩字硬塞进一页**。③ **密集小字（如用户画像 12–15px）是个别特殊件的局部例外**（在 `.pf/.pp/.up` 上局部冻小），**别把这种小字推广到普通页**。
-- **颜色只用渐变 token**：状态色（红/绿）用「同明度·微色相位移」渐变，不做深浅明暗；中性用纯色；深色大块统一 `var(--g-ink)`。
+- **颜色只用渐变 token**：状态色（红/绿）用「同明度·微色相位移」渐变，不做深浅明暗；中性使用浅灰渐变；深色大块统一 `var(--g-ink)`。
 - **列布局间距别用 flex 列**做瀑布墙（高度推挤 + `margin-top:auto` 会出诡异间距 bug）→ 用 `column-count`。
 - **⛔ 所有 flex 列 / grid 子项默认带 `min-height:0`（横向再带 `min-width:0`）**：否则子元素不收缩、内容一多就撑破父容器溢出——"等高对不齐 / 某栏比另一栏高 / 卡片气泡越界 / 文字被裁"几乎都是漏了这条（复用 skill 时最隐蔽、最费手调的一类坑）。等高靠 grid `align-items:stretch`；想让某栏吸高度差**只给它一个 `flex:1`、其余 `flex:0 0 auto`**；整块别用 `flex:1` 填满超高屏（4K 注水）→ `flex:0 1 auto`。
 - **绝对定位子元素无视父 padding** → 需要内边距时加一层 `position:absolute;inset:...` 的内层容器。
 - **⛔ 页面标题前默认什么都不放——绝不加装饰性 icon**（复用 skill 时最常翻车的一条）：head 的 `.brand` 槽**默认留空，只有标题 `.ttl`**；**仅当用户明确要 logo 时才加**（`<img class="logo" src="CANNlogo.png">`，深底用 `cann-dark-logo.svg`；用户给了别的真 logo 就换那个）。封面 `.cv-logo` 的大 logo 不在此列（封面照常有）。**严禁**在标题/区块标题前顶 Lucide / 通用 SVG 图标。装饰 icon 仅限个别精调组件内部（如画像 `.pf-h2`），不是通用模式。
 - **logo 用图片、且分深/浅两版按底色选**：深色底（封面 / 黑底页）用白/反白版，浅色底（灰底页 head）用深色/彩色版；**别把深色 logo 放深色底**（看不见），也别手敲文字拼 logo。详见 `components.md §0`。
-- **⛔ 不用 emoji，一律用线性 icon**：凡要图标的地方（情绪/表情、状态、操作、图例、卡内点缀、KEY 说明等）都用**线性描边 SVG**（Lucide / Feather 风格：`fill=none;stroke=currentColor;stroke-width≈1.6–2;stroke-linecap/linejoin=round`，跟随文字色），**严禁 emoji**（😐⏱✅❤◷ 等）——emoji 随系统/平台变样、自带彩色破坏冷灰+蓝紫统一调性、基线对不齐、显得不专业。**唯一例外：用户旅程「情绪曲线」可用 emoji 表情脸**（😐😕😤😩…，表达人的情绪起伏比线性脸更直观传神）——仅限**情绪曲线这一处的表情**，其余一切图标（状态/操作/图例/卡内点缀/KEY）仍只用线性 icon。此约束不放松上一条「标题前默认不放 icon」——是说**当确需图标时只能用线性 icon、不能用 emoji（情绪曲线表情除外）**。
+- **⛔ 不用 emoji；需要图标时优先用 Lucide**：凡要图标的地方（状态、操作、图例、卡内点缀、KEY 说明、淡水印大图标等）**优先从 Lucide 开源图标库选**，用 `<i data-lucide="icon-name"></i>` + `lucide.createIcons()`，或直接复制 Lucide 的线性 SVG；只有 Lucide 没有合适语义、或需要业务专属概念图时才自绘 SVG。图标保持线性描边：`fill=none;stroke=currentColor;stroke-width≈1.6–2;stroke-linecap/linejoin=round`，跟随文字色。**严禁 emoji**（😐⏱✅❤◷ 等）——emoji 随系统/平台变样、自带彩色破坏冷灰+蓝紫统一调性、基线对不齐、显得不专业。**唯一例外：用户旅程「情绪曲线」可用 emoji 表情脸**（😐😕😤😩…，表达人的情绪起伏比线性脸更直观传神）——仅限**情绪曲线这一处的表情**。此约束不放松上一条「标题前默认不放 icon」——是说**当确需图标时优先 Lucide、不能用 emoji（情绪曲线表情除外）**。
 - **🔴 复用优先于重画**：要把另一份**已精调好的报告 / 图表页**搬进来时，**别照着手搓**（手搓版内容更少、更丑、丢交互，几乎必被打回）→ `iframe` 嵌原件 + 注入 `embedfix` 只露目标元素（带 no-flash 防闪、懒加载、wheel 转发）。判断顺序：原件有→嵌 / skill 有精调件→套 / 都没有才手搓。详见 `pitfalls.md`「嵌入复用」。
 - **🔴 配图要「内容相关」，不是生搬 icon**：① 文字太多不好读的页 → 拆**左文字 + 右 demo/示意**（浏览器框、版本徽章、清单、渠道/公式图…），密度立降；② 概念页配图画**真·小 SVG 图**（对照=天平、价值链=漏斗、检索=放大镜→文档…），别放通用线性 icon（用户会说「只是个 icon、我以为有图」）。这与上面「标题前默认不放 icon」不冲突——那条管**标题装饰**，这条管**正文配图**。详见 `pitfalls.md`「配图」。
 - **🔴 配色讲主次**：装饰性元素（类别标签、icon、出处）用**中性灰**，颜色只留给**有含义的功能元素**——满屏单一 accent ＝「AI 味重、没主次」。别用「左描边 accent 条」卡片（套路、AI 味重）→ 1px 整框柔阴影 / 白底+角落径向光晕。详见 `pitfalls.md`「配色 / 视觉主次」。
@@ -80,7 +80,7 @@ description: 生成"产品 / 设计 / 研究汇报"风格的单文件网页 PPT�
 - `assets/template-library/index.html` — 可复制模板库，新增模板均用 `data-template / data-component / data-title` 标注；当前沉淀 `evidence-spotlight-matrix`、`derivation-column-flow`。
   新材料从 deck-template 起步；命中高级 pattern 时从 `components.md` 路由到 template-library 复制对应 section / CSS / JS。⚠️ 用户画像有**三套形式（一/二/三），按输入三选一**：正式深描单人→形式一、多人雷达对比→形式二、白板便利贴速写单人→形式三（详见 components.md §6a/§6b/§6c 顶部「三种形式怎么选」对照表）
 - `references/type-and-color.md` — 字号 ramp（6 token）+ 渐变色彩系统 + 玻璃卡公式 + 鸿蒙字体加载
-- `references/components.md` — 唯一选件路由入口 + 组件骨架：胶囊条 / 甘特 / VOC 墙 / 用户旅程 / 竞品对照 / 用户画像三形式 / KPI / glass card / head / 评分热力矩阵 / 分层架构 / 数据突出卡 / 生态干系人地图(§12) / 2×2 机会矩阵(§13) / 图+文 sm2 模式(§14) / 证据聚光灯(§15) / 四栏推导流(§16)
+- `references/components.md` — 唯一选件路由入口 + 组件骨架：胶囊条 / 甘特 / VOC 墙 / **头像生成与使用规范(§3a)** / 用户旅程 / 竞品对照 / 用户画像三形式 / KPI / glass card / head / 评分热力矩阵 / 分层架构 / 数据突出卡 / 生态干系人地图(§12) / 2×2 机会矩阵(§13) / 图+文 sm2 模式(§14) / 证据聚光灯(§15) / 四栏推导流(§16)
 - `references/deck-architecture.md` — 单文件 deck 机制 + 多分册 `build_index.py` 合并模式
 - `references/chart-selection.md` — 手画优先原则 + ECharts/ApexCharts 选型
 - `references/pitfalls.md` — 踩坑清单（间距 / 头像 / SVG / 甘特 / 合并）

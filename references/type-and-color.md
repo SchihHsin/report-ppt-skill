@@ -55,12 +55,12 @@
   /* 分类 / 状态渐变（120deg）*/
   --g-red:    linear-gradient(120deg,#FF5A6E,#FF6F55);  /* 状态红：同明度微色相位移 */
   --g-green:  linear-gradient(120deg,#23CFA0,#45D65A);  /* 状态绿：同明度微色相位移 */
-  --g-blue:   linear-gradient(120deg,#667EEA,#764BA2);
+  --g-blue:   linear-gradient(120deg,#2F6FED,#4B8DFF);
   --g-amber:  linear-gradient(120deg,#FBBF60,#F59E0B);
   --g-purple: linear-gradient(120deg,#A78BFA,#7C3AED);
   --g-teal:   linear-gradient(120deg,#38C9D7,#4FACFE);
-  --g-pink:   linear-gradient(120deg,#FF6B9D,#FF8B53);
-  --g-neutral:#C4CAD4;                                  /* 中性：纯色，不渐变 */
+  --g-pink:   linear-gradient(120deg,#FF4FA3,#FF7AC8);
+  --g-neutral:linear-gradient(120deg,#E4E8EF,#CBD3DF);  /* 中性浅灰渐变 */
 
   --dark:     #16191E;                                  /* 统一深色（实色）*/
   --g-ink:    linear-gradient(140deg,#22262F,#14171C);  /* 统一深色（渐变）：所有深色大色块用它 */
@@ -70,7 +70,7 @@
 
 **规则**：
 - 状态色（红/绿）= **同明度 + 微微色相位移** 的渐变，**不要**做深→浅明暗变化。
-- 中性色用**纯色**，不渐变。
+- 中性色使用**浅灰渐变**，用于中性状态、默认 chip、辅助模块、非重点节点。
 - 所有深色大色块（指标带 / 结论条 / 阶段头 / 高亮卡）统一引用 `var(--g-ink)`，不要各自定义深色。
 - 重点文字高亮：`background:linear-gradient(transparent 60%,rgba(91,91,214,.16) 0)`（紫色下划高亮底）。
 
