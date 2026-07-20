@@ -56,9 +56,9 @@ git clone git@github.com:SchihHsin/report-ppt-skill.git <项目>/.claude/skills/
 
 ## 用法
 
-1. 复制 `assets/deck-template.html` 作为起点（已含字体、token、base、导航 + 精调样例页覆盖三基调）。
-2. 删改样例页，从 `references/components.md` 顶部「选件路由」选择组件；高级 pattern 可从 `assets/template-library/index.html` 复制对应 `data-template` 页面。
-3. 浏览器打开自检（试不同翻页过渡加 `?t=fade|cut|slide-h|magic`）。
+1. 复制 `assets/deck-template.html` 作为起点，**保留完整 deck runtime**：底部图标控制栏、右侧导航、概览、全屏、键盘、URL 页码与配套 CSS / JS 一律不删不重写。
+2. 只删改 `#deck` 内的样例页，从 `references/components.md` 顶部「选件路由」选择组件；高级 pattern 可从 `assets/template-library/index.html` 复制对应 `data-template` 页面。
+3. 浏览器打开自检：实际点一次概览与全屏，并试不同翻页过渡 `?t=fade|cut|slide-h|magic`。
 
 样例页：① 封面 ② 关键指标(多彩渐变胶囊) ③ 竞品对照 ④ 用户画像·形式一 ⑤ 甘特 roadmap ⑥ 黑底章节封面(调色面板·localStorage 持久记忆) ⑦ 黑底设计点·版式①左文右图 ⑧ 黑底设计点·版式②上下堆叠 hero。
 
@@ -82,6 +82,11 @@ assets/
 `assets/` 里的封面图、CANN logo、竞品截图等**仅作排版示例**，用于演示组件效果。**套用到你自己的材料时请替换成自己的素材**；其中第三方产品截图、品牌 logo 版权归各自所有，请勿直接商用或再分发。
 
 ## 更新日志
+
+### 2026-07 — Deck runtime 改为不可拆硬规则
+
+- 控制栏、右侧导航点、概览、全屏、键盘、URL 页码定位与翻页脚本定义为一组完整 runtime：新 deck 必须从 `assets/deck-template.html` 整套继承，不能手写简化控制条或在用户提出后才补功能。
+- 交付清单新增实际操作验收：验证底部 hover 显隐、概览缩略图网格、全屏进出与重锚、键盘 / 右侧导航 / URL 页码同步。
 
 ### 2026-07 — 颜色 token、图标与低密度页策略
 
@@ -136,7 +141,7 @@ deck 从「横向 `translateX` 受控翻页」改为 **纵向原生 `scroll-snap
 
 - **纵向 scroll-snap 翻页**：`body` 作滚动容器（`overflow:hidden auto` + `scroll-snap-type:y mandatory`），`.slide` 满屏 + `scroll-snap-align:start;scroll-snap-stop:always`——划动过程短暂见两页、松手自动吸附到整页（不再拦截滚轮做瞬切/淡入）。当前页改由 **`IntersectionObserver`（≥55%）** 判定，`go()`/键盘/导航点统一走 `scrollIntoView`。
 - **键盘**：`↑↓←→` / 空格 / PageUp-Down / Home / End 全支持翻页；`O` 概览、`F` 全屏、`Esc` 退概览。
-- **右侧竖排 `.nav-dots`** + **底部居中控制栏 `#controls`**：控制栏**小而透**、**默认隐藏**，鼠标移到屏幕底部才出现、2.5s 淡出；亮/暗随当前页 `body.on-dark` 自适应。**移除顶部进度条**。
+- **右侧竖排 `.nav-dots`** + **底部居中控制栏 `#controls`**：控制栏**小而透**、**默认隐藏**，鼠标进入底部区域才出现、离开即淡出；亮/暗随当前页 `body.on-dark` 自适应。**移除顶部进度条**。
 - **概览 Overview**：缩略图网格按 **当前视窗比例** 缩放（不强制 16:9——窗口非 16:9 时强制 16:9 必然裁边或留缝），每页完整缩小、不裁不留缝；点缩略图跳页。
 - **全屏**：Fullscreen API（`F`），**进入后按钮图标切换为「退出全屏」**；监听 `fullscreenchange`/`resize` 重新吸附当前页（修复改窗口后停在两页之间）。
 - 黑底设计点章节封面的**调色面板**保留，默认 `display:none`、仅在章节封面页出现，`localStorage` 持久记忆；概览中隐藏。
