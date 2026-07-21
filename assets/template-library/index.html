@@ -6,6 +6,7 @@
 <title>Report PPT Template Library</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700;800&family=Barlow+Condensed:wght@200;300;400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/IKKI2000/harmonyos-fonts@master/css/harmonyos_sans_sc.css">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 <style>
 :root{
   --fs-h1:clamp(20px,1.7vw,30px);--fs-h2:clamp(16px,1.25vw,22px);--fs-h3:clamp(15.5px,1.2vw,19px);
@@ -66,6 +67,11 @@ body{overflow:hidden auto;scroll-snap-type:y mandatory;scroll-behavior:smooth}
 .dcol.cause .ditem strong,.dcol.move .ditem strong{color:#fff}.dcol.cause .ditem p,.dcol.move .ditem p{color:rgba(255,255,255,.72)}.dcol.cause .ditem svg,.dcol.move .ditem svg{stroke:#fff;opacity:.9}
 .dlinks{display:flex;flex-direction:column;justify-content:flex-start;gap:.84vh;flex:1;min-height:0}.dlink{display:grid;grid-template-columns:auto 1fr;gap:.58vw;align-items:start;padding:.18vh .12vw;text-decoration:none;color:inherit}.dlink .no{font-family:'JetBrains Mono';font-size:12px;font-weight:900;color:#6B4DE6;padding-top:1px}.dlink b{display:block;font-size:var(--fs-body);line-height:1.24;color:var(--ink);font-weight:900}.dlink span{display:block;margin-top:.12vh;font-size:var(--fs-sm);line-height:1.28;color:var(--ink-3)}
 .drel{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:40;overflow:visible}.drel path{fill:none;stroke:#B8BEC8;stroke-width:1.15;stroke-linecap:round;stroke-linejoin:round}.drel circle{fill:#B8BEC8;stroke:#B8BEC8;stroke-width:1.1}.drel circle.start{fill:transparent}.drel path.mid{stroke:#D9D0FF}.drel circle.mid{fill:#D9D0FF;stroke:#D9D0FF}.drel circle.mid.start{fill:transparent}.drel path.purple{stroke:#fff}.drel circle.purple{fill:#fff;stroke:#fff}.drel circle.purple.start{fill:transparent}
+
+/* Template: peer-cards-three / peer-cards-many */
+.peer-wrap{flex:1;min-height:0;display:flex;align-items:center}.peer-grid{width:min(1120px,100%);margin:0 auto;display:grid;gap:1.5vw}.peer-three{grid-template-columns:repeat(3,minmax(0,1fr))}.peer-many{grid-template-columns:repeat(4,minmax(0,1fr));max-width:1220px;gap:1.2vw}.peer-card{--pc:var(--c-indigo);position:relative;isolation:isolate;overflow:hidden;min-width:0;aspect-ratio:4/5;border-radius:16px;padding:2.15vh 1.35vw;display:flex;flex-direction:column;justify-content:space-between;background:linear-gradient(145deg,rgba(255,255,255,.48),rgba(255,255,255,.13));border:1px solid rgba(255,255,255,.62);box-shadow:0 16px 34px -24px color-mix(in srgb,var(--pc) 28%,transparent),inset 0 1px 0 rgba(255,255,255,.72);backdrop-filter:blur(15px) saturate(1.5);-webkit-backdrop-filter:blur(15px) saturate(1.5)}.peer-card::before{content:"";position:absolute;z-index:-1;left:-14%;right:-14%;top:-12%;height:25%;background:linear-gradient(105deg,color-mix(in srgb,var(--pc) 20%,transparent),color-mix(in srgb,var(--pc) 8%,transparent) 52%,transparent 88%);filter:blur(32px)}.peer-card>svg{position:absolute;z-index:-1;right:-1.6vw;bottom:-2.5vh;width:13vw;height:13vw;min-width:132px;min-height:132px;color:var(--pc);opacity:.12;stroke-width:1.35}.peer-tag{align-self:flex-start;color:var(--pc);background:color-mix(in srgb,var(--pc) 10%,white);border:1px solid color-mix(in srgb,var(--pc) 22%,transparent);border-radius:999px;padding:.45vh .75vw;font-family:'JetBrains Mono';font-size:var(--fs-xs);font-weight:800;letter-spacing:.12em;text-transform:uppercase}.peer-copy{position:relative;z-index:1}.peer-copy h3{min-height:2.5em;display:flex;align-items:flex-end;font-size:var(--fs-h2);font-weight:850;line-height:1.25;color:var(--ink)}.peer-copy p{margin-top:.4vh;font-size:var(--fs-body);line-height:1.6;color:var(--ink-2)}.peer-three .peer-card{aspect-ratio:1/1;padding:2.5vh 1.65vw}.peer-three .peer-card::before{display:none}.peer-three .peer-card>svg{right:-1.35vw;bottom:-2.1vh;width:11vw;height:11vw;min-width:118px;min-height:118px}.peer-card.accent{--pc:var(--c-indigo);background:var(--g-accent);border-color:rgba(255,255,255,.3);box-shadow:0 18px 38px -22px rgba(91,91,214,.68),inset 0 1px 0 rgba(255,255,255,.32)}.peer-card.ink{--pc:#fff;background:var(--g-ink);border-color:rgba(255,255,255,.16);box-shadow:0 18px 38px -22px rgba(20,25,35,.72),inset 0 1px 0 rgba(255,255,255,.2)}.peer-card.accent .peer-tag,.peer-card.ink .peer-tag{color:#fff;background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.22)}.peer-card.accent .peer-copy h3,.peer-card.ink .peer-copy h3{color:#fff}.peer-card.accent .peer-copy p,.peer-card.ink .peer-copy p{color:rgba(255,255,255,.8)}.peer-card.accent>svg,.peer-card.ink>svg{color:#fff;opacity:.13}.tone-indigo{--pc:var(--c-indigo)}.tone-blue{--pc:var(--c-blue)}.tone-teal{--pc:var(--c-teal)}.tone-purple{--pc:var(--c-purple)}.tone-pink{--pc:var(--c-pink)}
+/* Four-plus cards center their reading group without competing with the lower-right watermark. */
+.peer-many .peer-card{justify-content:initial}.peer-many .peer-copy{display:flex;flex:1;min-height:0;flex-direction:column;justify-content:center;align-items:flex-start;gap:1.15vh;padding-bottom:2.1vh}.peer-many .peer-copy .peer-tag{flex:0 0 auto}.peer-many .peer-copy h3{min-height:2.5em;font-size:var(--fs-h1)}.peer-many .peer-copy p{margin-top:0;font-size:var(--fs-h3);line-height:1.55}.tone-green{--pc:var(--c-green)}
 </style>
 </head>
 <body>
@@ -103,6 +109,25 @@ body{overflow:hidden auto;scroll-snap-type:y mandatory;scroll-behavior:smooth}
       <div class="spot-rings off" id="spotRings"></div>
     </div>
   </div>
+</section>
+
+<section id="peer-cards-three" class="slide s-gray" data-template="peer-cards-three" data-component="同层级信息卡" data-title="三张同级卡以主次色彩建立阅读顺序">
+  <div class="head"><div class="head-l"><div class="brand"><span class="ttl">三张同级信息，用白、蓝紫与墨色建立阅读顺序</span></div><div class="subttl">Template · peer-cards-three · neutral / accent / conclusion</div></div><div class="head-r">Template 17A<br/>Peer Cards / Three</div></div>
+  <div class="body-area"><div class="peer-wrap"><div class="peer-grid peer-three">
+    <article class="peer-card neutral"><i data-lucide="layers-3"></i><span class="peer-tag">Context</span><div class="peer-copy"><h3>先交代背景</h3><p>白玻璃卡承载中性事实、前提或已有证据。</p></div></article>
+    <article class="peer-card accent"><i data-lucide="focus"></i><span class="peer-tag">Focus</span><div class="peer-copy"><h3>再突出重点</h3><p>蓝紫渐变卡承载这一页最值得记住的变化。</p></div></article>
+    <article class="peer-card ink"><i data-lucide="badge-check"></i><span class="peer-tag">Conclusion</span><div class="peer-copy"><h3>最后落到结论</h3><p>墨色卡只给最终判断、目标或必须执行的动作。</p></div></article>
+  </div></div></div>
+</section>
+
+<section id="peer-cards-many" class="slide s-gray" data-template="peer-cards-many" data-component="同层级信息卡" data-title="四张以上以透白大图标卡维持信息节奏">
+  <div class="head"><div class="head-l"><div class="brand"><span class="ttl">四张以上不再实色满铺，以透白卡保留阅读节奏</span></div><div class="subttl">Template · peer-cards-many · translucent white / semantic color</div></div><div class="head-r">Template 17B<br/>Peer Cards / Four Plus</div></div>
+  <div class="body-area"><div class="peer-wrap"><div class="peer-grid peer-many">
+    <article class="peer-card tone-indigo"><i data-lucide="layers-3"></i><div class="peer-copy"><span class="peer-tag">Context</span><h3>背景</h3><p>中性事实与现状。</p></div></article>
+    <article class="peer-card tone-blue"><i data-lucide="focus"></i><div class="peer-copy"><span class="peer-tag">Focus</span><h3>重点</h3><p>需要被优先关注。</p></div></article>
+    <article class="peer-card tone-teal"><i data-lucide="badge-check"></i><div class="peer-copy"><span class="peer-tag">Conclusion</span><h3>结论</h3><p>最终判断与动作。</p></div></article>
+    <article class="peer-card tone-green"><i data-lucide="circle-help"></i><div class="peer-copy"><span class="peer-tag">Support</span><h3>补充</h3><p>解释边界、条件或后续。</p></div></article>
+  </div></div></div>
 </section>
 
 <section class="slide s-gray derive-slide" data-template="derivation-column-flow" data-component="四栏推导流" data-title="四栏推导流：问题信号到结论行动">
@@ -218,6 +243,7 @@ function renderDeriveRelations(){
   });
 }
 installSpotlight();
+if(window.lucide)lucide.createIcons();
 requestAnimationFrame(()=>{renderDeriveRelations();setTimeout(renderDeriveRelations,120);});
 addEventListener('resize',renderDeriveRelations,{passive:true});
 </script>

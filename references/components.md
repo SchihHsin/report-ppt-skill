@@ -17,6 +17,7 @@
 | 几类用户有什么不同/角色对比/各角色的敏感程度/能力维度对比/radar/雷达图/多角色对照（**多人对比**） | **§6b 用户画像·形式二** | `deck-template:persona-radar` | 展示**多人在若干维度的差异** → 顶栏 + 雷达图（ECharts）|
 | 工作坊/共创/白板式画像/便利贴风 persona/性格+动机+目标+痛点+问题+解法都要（**单人·看板速写**） | **§6c 用户画像·形式三** | `deck-template:persona-workshop` | 轻快铺开**一个人的方方面面** → 左紫栏档案 + 右便利贴墙 |
 | 卡片底部补几个小数字/附加指标/标签+数值/secondary KPI | **§7 KPI 小数字组** | `deck-template:kpi-mini` | 嵌在别的卡**底部**，不独占一页 |
+| 三个并列要点/三个同级原因或目标/三项原则/四个以上同级模块/一组同层级信息卡/别一排白卡 | **§17 同层级信息卡** | `peer-cards-three` / `peer-cards-many` | 无专属组件的**同层级信息**，按卡片数量选三层色彩或透白大图标卡 |
 | 设计理念/方案亮点/解法/核心设计点/问题→方案/design concept/我们的答案是 | **§8 黑底设计点** | `deck-template:glow-design-point` | 讲**方案/主张**，要氛围感 → 黑底光晕 + 渐变标题 |
 | 评分矩阵/能力打分/竞品打分/多对象×多维度热力表/scorecard | **§9 评分热力矩阵** | `deck-template:heatmap-score-matrix` | 手画网格 + JS 渲染（淡底+彩字+表情脸）|
 | 能力架构/体验架构/产品架构/分层框架（目标→场景→…纵向分层）| **§10 分层架构图** | `deck-template:layered-architecture` | 左标签 + 聚类玻璃卡 |
@@ -27,7 +28,7 @@
 | 需要围绕一组证据逐条讲解；没有现成承载物时新绘证据矩阵；已有矩阵/旅程图/流程图/截图组/架构图/对比卡时加聚光灯；spotlight/高亮局部/手动翻问题 | **§15 证据聚光灯** | `evidence-spotlight-matrix` | 两种用法：**新绘证据矩阵**，或在既有内容上叠加圈选、降透明、解释卡片和手动翻页 |
 | 从问题推导到结论/问题→原因→做法→结论/把前面发现收束成行动/几栏推导/竖栏推导/推理链路 | **§16 四栏推导流** | `derivation-column-flow` | 需要展示**证据链和叙事推导**，而不是单纯列问题卡 |
 
-判不准时，按主体：**数字进度**→§1，**时间轴**→§2，**引用堆**→§3，**分阶段流程**→`user-journey-skill`，**多产品比**→§5，**正式讲透一个人**→§6a，**多人维度对比**→§6b，**白板式速写一个人**→§6c，**讲方案**→§8，**打分表**→§9，**分层架构**→§10，**大数字主打**→§11，**干系人关系图**→§12，**优先级/机会四象限**→§13。命中后优先使用对应 skill 的样板，只改文案/配色。
+判不准时，按主体：**数字进度**→§1，**时间轴**→§2，**引用堆**→§3，**分阶段流程**→`user-journey-skill`，**多产品比**→§5，**正式讲透一个人**→§6a，**多人维度对比**→§6b，**白板式速写一个人**→§6c，**并列同级信息**→§17，**讲方案**→§8，**打分表**→§9，**分层架构**→§10，**大数字主打**→§11，**干系人关系图**→§12，**优先级/机会四象限**→§13。命中后优先使用对应 skill 的样板，只改文案/配色。
 
 > §9–§16 是手画 / 交互 pattern（评分矩阵、证据聚光灯需配套 JS 渲染；干系人地图是单张内联 SVG；四栏推导流有连线与自动间距脚本）。布局型 pattern（洋葱圈 / 共情图 / 服务蓝图 / 亲和图 / 双钻）待补。
 
@@ -1285,6 +1286,55 @@ function textRight(el){
 - §4 用户旅程：按时间/阶段展开用户经历。
 - §10 分层架构图：展示系统分层关系。
 - §16 四栏推导流：展示**证据链如何推导出行动结论**，强调叙事逻辑和承接关系。
+
+## 17. 同层级信息卡（按数量决定样式）
+
+> **data-template**：`peer-cards-three` / `peer-cards-many`
+>
+> **命中**：三个并列要点、三个同级原因/目标/原则、四个以上同级模块、一组无主次层级的说明卡。用户会说“这几个卡是同一个层级”“别一排白卡”“三个 / 四个 / 五个模块”。
+>
+> **不命中**：竞品比较（§5）、冲击力大数字（§11）、人物画像（§6）、时间轴/流程/旅程（§2 / `user-journey-skill`）、优先级矩阵（§13）。这些有专属结构，不能用本件替代。
+
+### 数量硬规则
+
+| 卡片数 | 必须使用 | 目的 |
+|---|---|---|
+| 恰好 3 张 | **白玻璃 / `--g-accent` / `--g-ink`** 三层 | 依次表达事实、重点、结论；不能三张同色白卡 |
+| 4 张及以上 | **透白玻璃卡** + `--c-*` 标签/大 Lucide 图标/顶部横向淡光带 | 保持可读密度，靠局部纯色区分，不用实色满铺 |
+| 1--2 张 | 不套本件 | 改为大字结论 + 支撑内容，或选更贴合内容的专属组件 |
+
+### 共通约束
+
+- 卡片同为 `aspect-ratio:4/5` 附近的方/竖比例；不要做扁横长条。标题区预留两行高度并底对齐，描述紧跟标题。**四张及以上**把标签、标题、描述包成一个阅读组，在避开右下水印图标后整体垂直居中；标题用 `--fs-h1`，说明用 `--fs-h3`，不要仍用落底的小字结构。
+- 4 张以上时，每张卡挑一个有语义的 `--c-*`。同卡的 tag、Lucide 大图标、顶部横向淡光带必须共用该 token；卡片底保持透白，**禁止**实色满铺、顶部彩色描边、圆形光晕和右上角重复小 icon。
+- 4--5 张默认用靛/蓝/青/绿/粉（`--c-indigo / blue / teal / green / pink`）。紫仅在“策略/创新”语义明确时替换其中一张；靛/紫、红/玫红、绿/薄荷不要默认同墙并用，橙/琥珀/黄最多选两种。红/橙/黄只在风险、提醒、进行中确有语义时加入。
+- 图标优先 Lucide，放右下作为淡水印，不放在页面标题前；同卡的标签、图标、顶部光带只用一个 `--c-*`。标签不再孤立贴顶，而应放入居中的阅读组；标题多一行不会把描述顶到不同高度。
+
+### 可复制模板
+
+从 `assets/template-library/index.html` 复制完整 section 与 `.peer-*` CSS：
+
+```html
+<!-- 恰好三张：white / accent / ink -->
+<section class="slide s-gray" data-template="peer-cards-three" data-component="同层级信息卡" data-title="三张同级卡以主次色彩建立阅读顺序">
+  <div class="head">...</div>
+  <div class="body-area"><div class="peer-wrap"><div class="peer-grid peer-three">
+    <article class="peer-card neutral"><i data-lucide="layers-3"></i><span class="peer-tag">Context</span><div class="peer-copy"><h3>先交代背景</h3><p>白玻璃卡承载中性事实与前提。</p></div></article>
+    <article class="peer-card accent"><i data-lucide="focus"></i><span class="peer-tag">Focus</span><div class="peer-copy"><h3>再突出重点</h3><p>蓝紫渐变卡只承载本页的主变化。</p></div></article>
+    <article class="peer-card ink"><i data-lucide="badge-check"></i><span class="peer-tag">Conclusion</span><div class="peer-copy"><h3>最后落到结论</h3><p>墨色卡只放最终判断或行动。</p></div></article>
+  </div></div></div>
+</section>
+
+<!-- 四张及以上：每张透明白卡 + 同色 tag / icon / top glow -->
+<section class="slide s-gray" data-template="peer-cards-many" data-component="同层级信息卡" data-title="四张以上以透白大图标卡维持信息节奏">
+  <div class="head">...</div>
+  <div class="body-area"><div class="peer-wrap"><div class="peer-grid peer-many">
+    <article class="peer-card tone-indigo"><i data-lucide="layers-3"></i><div class="peer-copy"><span class="peer-tag">Context</span><h3>背景</h3><p>中性事实与现状。</p></div></article>
+    <article class="peer-card tone-blue"><i data-lucide="focus"></i><div class="peer-copy"><span class="peer-tag">Focus</span><h3>重点</h3><p>需要被优先关注。</p></div></article>
+    <!-- 默认继续添加 tone-teal / tone-green / tone-pink；策略主题才用 tone-purple 替换其中一张 -->
+  </div></div></div>
+</section>
+```
 
 ### 最小 HTML 骨架
 
