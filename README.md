@@ -60,6 +60,10 @@ git clone git@github.com:SchihHsin/report-ppt-skill.git <项目>/.claude/skills/
 2. 只删改 `#deck` 内的样例页，从 `references/components.md` 顶部「选件路由」选择组件；高级 pattern 可从 `assets/template-library/index.html` 复制对应 `data-template` 页面。
 3. 浏览器打开自检：实际点一次概览与全屏，并试不同翻页过渡 `?t=fade|cut|slide-h|magic`。
 
+### 用户旅程图
+
+用户说“全流程 / 端到端 / 触点 / 情绪曲线 / 各阶段痛点 / journey map”时，使用独立的 `user-journey-skill`。它提供单一的旅程图维护源和可复制样板，固定阶段、触点、行为、情绪、痛点、机会点六行逐列对应；嵌入本 deck 时仍须保留本 skill 的完整翻页、概览和全屏 runtime。
+
 样例页：① 封面 ② 关键指标(多彩渐变胶囊) ③ 竞品对照 ④ 用户画像·形式一 ⑤ 甘特 roadmap ⑥ 黑底章节封面(调色面板·localStorage 持久记忆) ⑦ 黑底设计点·版式①左文右图 ⑧ 黑底设计点·版式②上下堆叠 hero。
 
 > ⚠️ 用户画像有**三套形式（一/二/三），按内容三选一**：正式深描单人→形式一、多角色雷达对比→形式二、白板便利贴速写单人→形式三（详见 `components.md §6a/§6b/§6c`）。
@@ -82,6 +86,11 @@ assets/
 `assets/` 里的封面图、CANN logo、竞品截图等**仅作排版示例**，用于演示组件效果。**套用到你自己的材料时请替换成自己的素材**；其中第三方产品截图、品牌 logo 版权归各自所有，请勿直接商用或再分发。
 
 ## 更新日志
+
+### 2026-07 — 用户旅程图抽为独立 Skill
+
+- 新增 `user-journey-skill`：将用户旅程从通用组件库中抽出，提供独立触发词、内容结构、改列规则、验收规则与可直接打开的单页 HTML 样板。
+- `report-ppt-skill` 的路由表改为优先命中独立 skill；`components.md §4` 保留为既有 deck 的兼容参考，不再作为新页面复制源。
 
 ### 2026-07 — Deck runtime 改为不可拆硬规则
 

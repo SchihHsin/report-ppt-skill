@@ -11,7 +11,7 @@
 | 几个大数字/百分比/转化率/达成率/KPI overview/metrics/数据概览/关键指标/核心数据 | **§1 渐变胶囊指标** | `deck-template:stat-grid` | 3 个左右**带进度感的百分比**唱主角 → 多彩胶囊条 |
 | 计划/排期/里程碑/时间线/roadmap/甘特/泳道/sprint/Q1Q2/阶段规划/什么时候上线/路线图 | **§2 甘特 roadmap** | `deck-template:gantt-roadmap` | **带时间轴的条**（谁在哪个区间做） → 浮动甘特条 |
 | 用户反馈/原声/吐槽/访谈摘录/语录/VOC/voice of customer/调研摘要/客户怎么说/痛点引用/把这些话整理一下 | **§3 VOC 声音墙** | `deck-template:voc-wall` | 一堆**长短不一的引用/评论**要陈列 → 瀑布流声音墙 |
-| 全流程/端到端/各阶段/触点/情绪曲线/journey/journey map/全链路/操作步骤的痛点/用户怎么一步步做/流程断裂点 | **§4 用户旅程** | `deck-template:user-journey` | 内容**按阶段推进**、想看每阶段情绪/痛点 → 行旅程网格 |
+| 全流程/端到端/各阶段/触点/情绪曲线/journey/journey map/全链路/操作步骤的痛点/用户怎么一步步做/流程断裂点 | **`user-journey-skill`** | `user-journey-skill:journey-grid` | 内容**按阶段推进**、想看每阶段情绪/痛点 → 独立用户旅程图 |
 | 竞品/友商/对手/同类工具/横向对比/benchmark/competitive analysis/A vs B/选型/市面方案/竞品矩阵 | **§5 竞品对照** | `deck-template:competitive-compare` | **2~3 个同类产品**摆开比 + 给结论 → 三卡 + 对策条 |
 | 介绍某个用户/他是谁/他的日常/角色特征/职责场景痛点/persona/用户画像/用户是谁（**单人·正式深描**） | **§6a 用户画像·形式一** | `deck-template:persona-profile` | 讲清楚**一个人**的全貌（职责/场景/痛点）→ 左栏人物 + 右侧多区 |
 | 几类用户有什么不同/角色对比/各角色的敏感程度/能力维度对比/radar/雷达图/多角色对照（**多人对比**） | **§6b 用户画像·形式二** | `deck-template:persona-radar` | 展示**多人在若干维度的差异** → 顶栏 + 雷达图（ECharts）|
@@ -27,7 +27,7 @@
 | 需要围绕一组证据逐条讲解；没有现成承载物时新绘证据矩阵；已有矩阵/旅程图/流程图/截图组/架构图/对比卡时加聚光灯；spotlight/高亮局部/手动翻问题 | **§15 证据聚光灯** | `evidence-spotlight-matrix` | 两种用法：**新绘证据矩阵**，或在既有内容上叠加圈选、降透明、解释卡片和手动翻页 |
 | 从问题推导到结论/问题→原因→做法→结论/把前面发现收束成行动/几栏推导/竖栏推导/推理链路 | **§16 四栏推导流** | `derivation-column-flow` | 需要展示**证据链和叙事推导**，而不是单纯列问题卡 |
 
-判不准时，按主体：**数字进度**→§1，**时间轴**→§2，**引用堆**→§3，**分阶段流程**→§4，**多产品比**→§5，**正式讲透一个人**→§6a，**多人维度对比**→§6b，**白板式速写一个人**→§6c，**讲方案**→§8，**打分表**→§9，**分层架构**→§10，**大数字主打**→§11，**干系人关系图**→§12，**优先级/机会四象限**→§13。命中后翻到该节，照抄骨架 + 参考填充示例，只改文案/配色。
+判不准时，按主体：**数字进度**→§1，**时间轴**→§2，**引用堆**→§3，**分阶段流程**→`user-journey-skill`，**多产品比**→§5，**正式讲透一个人**→§6a，**多人维度对比**→§6b，**白板式速写一个人**→§6c，**讲方案**→§8，**打分表**→§9，**分层架构**→§10，**大数字主打**→§11，**干系人关系图**→§12，**优先级/机会四象限**→§13。命中后优先使用对应 skill 的样板，只改文案/配色。
 
 > §9–§16 是手画 / 交互 pattern（评分矩阵、证据聚光灯需配套 JS 渲染；干系人地图是单张内联 SVG；四栏推导流有连线与自动间距脚本）。布局型 pattern（洋葱圈 / 共情图 / 服务蓝图 / 亲和图 / 双钻）待补。
 
@@ -349,151 +349,11 @@
 - **容器**：VOC 使用 `.voc-ava`，正式画像使用 `.pf-portrait`，看板画像使用 `.up-ava`；图片统一 `width:100%;height:100%;object-fit:cover`，让头像服从组件既有比例，不另造头像卡片。
 - **真实人物**：用户提供且确认可用的照片优先于占位头像；没有授权的真实客户、访谈对象不要擅自使用照片，用匿名化的本地 SVG 占位头像即可。
 
-## 4. 用户旅程（全链路）
+## 4. 用户旅程（已抽取为独立 Skill）
 
-> 来自样板 `cann-design-concept`（`.jrn-*`，参照 cann-journey-compare 风格）。**适用范围比"旅程图"更广**：任何**按阶段推进的流程**都能套——用户研究旅程、产品开发流程、运维流程……只要有"阶段列 × 信息行"结构就命中。
-> 结构 = `56px 行标列 + N 个阶段列` 的多行网格，逐行：① 阶段头 ② 触点 ③ 行为(手画 mini 线框) ④ 情绪曲线(逐格 SVG) ⑤ 痛点 ⑥ 机会点。行与行靠各 cell 的 `border-left/right/bottom` 拼成连续竖列。
-> ⚠️ **情绪行做成「逐格独立块」、不要做成跨满 N 格的一条连续曲线**：每阶段一个独立 `.jrn-ec`，格内各画一段 SVG（首尾 y 值衔接相邻格即可视觉连贯）。跨格连续曲线在各列宽变化时会与上面其它行对不齐、且难锁高。
-> ⚠️ **高度要显式定义、别靠内容自然撑**：情绪行 `.jrn-grid.je` 必须 `height:16vh`（其内容全为绝对定位，不锁高会被 flex 压扁塌成一团）；行为线框 `.jrn-scr` 用固定 `vh`（CSS 给 `13.5vh`，实际各格 HTML 内联覆盖成 `11vh` 更紧凑）。各行高度统一由这些 `vh` 控制，保证 5 个阶段列等高对齐。
-
-### CSS 骨架（抄自样板）
-
-```css
-.jrn-wrap{flex:1;min-height:0;display:flex;flex-direction:column;gap:0}
-.jrn-grid{display:grid;grid-template-columns:56px repeat(5,1fr);gap:0}   /* 5 阶段；改列数即改 repeat(N) */
-/* 行标列 */
-.jrn-rl{display:flex;flex-direction:column;justify-content:center;padding-right:9px;text-align:right}
-.jrn-rn{font-size:10px;font-weight:700;color:var(--ink-2);line-height:1.4}
-.jrn-re{font-size:8px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.5px;margin-top:1px}
-/* ① 阶段头（深色，底部彩条按阶段区分）*/
-.jrn-pw{padding-right:5px;display:flex;flex-direction:column}
-.jrn-ph{flex:1;border-radius:10px 10px 0 0;padding:1.1vh .85vw 1.4vh;background:var(--g-ink);position:relative;overflow:hidden}
-.jrn-ph::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px}
-.jpc1 .jrn-ph::after{background:#EF4444}.jpc2 .jrn-ph::after{background:#F59E0B}
-.jpc3 .jrn-ph::after{background:#3B82F6}.jpc4 .jrn-ph::after{background:#10B981}
-.jpc5 .jrn-ph::after{background:#8B5CF6}
-.jrn-ph .pn{font-size:8.5px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:2px}
-.jrn-ph .pt{font-size:max(11px,.8vw);font-weight:800;color:#fff;line-height:1.3}
-.jrn-ph .ptm{font-size:8px;margin-top:.35vh;display:inline-flex;align-items:center;gap:3px;padding:1.5px 6px;border-radius:100px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.5)}
-/* ② 触点 */
-.jrn-tw{padding-right:5px;display:flex;flex-direction:column}
-.jrn-tc{flex:1;border-left:1px solid rgba(255,255,255,.6);border-right:1px solid rgba(255,255,255,.6);border-bottom:1px solid rgba(255,255,255,.6);padding:1vh .85vw;background:rgba(255,255,255,.42);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);display:flex;flex-direction:column;justify-content:center;gap:.5vh}
-.jrn-touch{font-size:max(9.5px,.7vw);color:var(--ink);line-height:1.35;display:flex;align-items:baseline;gap:.4em}
-.jrn-touch::before{content:"";width:4px;height:4px;border-radius:50%;background:var(--ink-3);flex-shrink:0;align-self:center}
-/* ③ 行为（手画 mini 线框 + 行为描述）*/
-.jrn-fw{padding-right:5px;display:flex;flex-direction:column}
-.jrn-fc{flex:1;border-left:1px solid rgba(255,255,255,.6);border-right:1px solid rgba(255,255,255,.6);border-bottom:1px solid rgba(255,255,255,.6);padding:1vh .85vw;display:flex;flex-direction:column;gap:.6vh;background:rgba(255,255,255,.42);backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px)}
-.jrn-scr{border-radius:5px;overflow:hidden;border:1px solid var(--line);background:#F8F9FB;flex:0 0 auto;height:13.5vh;display:flex;flex-direction:column}
-.jrn-sb{display:flex;align-items:center;gap:3px;padding:3px 5px;background:#ECEEF2;border-bottom:1px solid var(--line);flex-shrink:0}
-.jrn-sd{width:4px;height:4px;border-radius:50%}
-.jrn-sc{padding:4px 5px;flex:1;overflow:hidden;display:flex;flex-direction:column;gap:2px}
-.jmb{height:2.5px;border-radius:2px;background:#E5E7EB}
-.jrn-fl{font-size:max(9.5px,.7vw);font-weight:500;color:var(--ink);line-height:1.4}
-/* ④ 情绪：逐格 SVG（jrn-grid.je 显式锁高，否则被压扁）*/
-.jrn-grid.je{flex-shrink:0;height:16vh}
-.jrn-ew{padding-right:5px;display:flex;flex-direction:column}
-.jrn-ec{flex:1;position:relative;height:100%;border-left:1px solid rgba(255,255,255,.6);border-right:1px solid rgba(255,255,255,.6);border-bottom:1px solid rgba(255,255,255,.6);background:rgba(250,251,255,.55);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);overflow:hidden}
-.jrn-ec svg{position:absolute;inset:0;width:100%;height:100%;display:block}
-.jrn-ec .d{position:absolute;width:9px;height:9px;border-radius:50%;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.2);transform:translate(-50%,-50%);left:50%;z-index:3}
-.jrn-ec .e{position:absolute;font-size:13px;transform:translate(-50%,0);left:50%;z-index:3;line-height:1}
-.jrn-ec .l{position:absolute;font-family:'JetBrains Mono';font-size:8px;font-weight:700;transform:translateX(-50%);left:50%;bottom:4px;z-index:3;white-space:nowrap}
-/* ⑤ 痛点（红底 + 警告图标）*/
-.jrn-pw2{padding-right:5px;display:flex;flex-direction:column}
-.jrn-pc{flex:1;border-left:1px solid rgba(255,255,255,.6);border-right:1px solid rgba(255,255,255,.6);border-bottom:1px solid rgba(255,255,255,.6);padding:.9vh .85vw;display:flex;flex-direction:column;justify-content:center;gap:.55vh;background:linear-gradient(160deg,rgba(254,236,236,.72),rgba(255,247,240,.55));backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
-.jrn-pi{display:flex;gap:4px;align-items:flex-start}
-.jrn-pi-icon{width:16px;height:16px;border-radius:4px;background:#FEF3C7;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center}
-.jrn-pi-icon svg{width:9px;height:9px;stroke:#92400E}
-.jrn-pt{font-size:max(9.5px,.7vw);color:#7F1D1D;line-height:1.45}
-/* ⑥ 机会点（绿底，末行收圆角）*/
-.jrn-ow{padding-right:5px;display:flex;flex-direction:column}
-.jrn-oc{flex:1;border-left:1px solid rgba(255,255,255,.6);border-right:1px solid rgba(255,255,255,.6);border-bottom:1px solid rgba(255,255,255,.6);border-radius:0 0 9px 9px;padding:.9vh .85vw;display:flex;flex-direction:column;justify-content:center;gap:.55vh;background:linear-gradient(160deg,rgba(220,252,231,.72),rgba(240,253,244,.55));backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
-.jrn-oi{display:flex;gap:4px;align-items:flex-start}
-.jrn-oi-dot{width:7px;height:7px;border-radius:50%;background:#10B981;flex-shrink:0;margin-top:3px}
-.jrn-ot{font-size:max(9.5px,.7vw);color:#064E3B;line-height:1.45}
-```
-
-### HTML 骨架（每行首格 = 行标，后接 N 个阶段格）
-
-```html
-<div class="body-area"><div class="jrn-wrap">
-
-  <!-- ① 阶段头（行标列留空）-->
-  <div class="jrn-grid">
-    <div></div>
-    <div class="jrn-pw jpc1"><div class="jrn-ph"><div class="pn">01</div><div class="pt">环境搭建</div><div class="ptm">⏱ 2–8 hr</div></div></div>
-    <div class="jrn-pw jpc2"><div class="jrn-ph"><div class="pn">02</div><div class="pt">文档学习</div><div class="ptm">⏱ 1–3 天</div></div></div>
-    <!-- … jpc3/jpc4/jpc5 同理 -->
-  </div>
-
-  <!-- ② 触点 -->
-  <div class="jrn-grid">
-    <div class="jrn-rl"><div class="jrn-rn">触点</div><div class="jrn-re">Touch</div></div>
-    <div class="jrn-tw"><div class="jrn-tc">
-      <div class="jrn-touch">官网文档中心</div>
-      <div class="jrn-touch">Driver/CANN 版本矩阵</div>
-    </div></div>
-    <!-- 每阶段一个 jrn-tw -->
-  </div>
-
-  <!-- ③ 行为：每格 = 手画 mini 浏览器线框 + 行为描述 -->
-  <div class="jrn-grid">
-    <div class="jrn-rl"><div class="jrn-rn">行为</div><div class="jrn-re">Action</div></div>
-    <div class="jrn-fw"><div class="jrn-fc">
-      <div class="jrn-scr" style="height:11vh">
-        <div class="jrn-sb"><div class="jrn-sd" style="background:#FF5F57"></div><div class="jrn-sd" style="background:#FFBD2E"></div><div class="jrn-sd" style="background:#28CA41"></div></div>
-        <div class="jrn-sc"><!-- 用 .jmb 小条 + 彩色块手画示意 UI(终端/IDE/看板) -->
-          <div class="jmb" style="width:90%"></div><div class="jmb" style="width:70%"></div></div>
-      </div>
-      <div class="jrn-fl">查版本矩阵 → 装 Driver+CANN → 验证 Hello World</div>
-    </div></div>
-    <!-- 每阶段一个 jrn-fw，各画一张不同 mini UI -->
-  </div>
-
-  <!-- ④ 情绪：jrn-grid je 锁高；每格 SVG 曲线 + 圆点 + emoji + 标签 -->
-  <div class="jrn-grid je">
-    <div class="jrn-rl"><div class="jrn-rn">情绪</div><div class="jrn-re">Emotion</div></div>
-    <div class="jrn-ew"><div class="jrn-ec">
-      <svg viewBox="0 0 100 100" preserveAspectRatio="none">
-        <defs><linearGradient id="jeg1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F59E0B" stop-opacity=".16"/><stop offset="1" stop-color="#F59E0B" stop-opacity="0"/></linearGradient></defs>
-        <line x1="0" y1="50" x2="100" y2="50" stroke="#E5E7EB" stroke-width=".8" stroke-dasharray="3,3" vector-effect="non-scaling-stroke"/>
-        <polygon points="0,38 50,38 100,45 100,100 0,100" fill="url(#jeg1)"/>
-        <polyline points="0,38 50,38 100,45" fill="none" stroke="#F59E0B" stroke-width="1.6" vector-effect="non-scaling-stroke"/>
-      </svg>
-      <div class="d" style="top:38%;background:#F59E0B"></div>
-      <div class="e" style="top:calc(38% - 19px)">😐</div>
-      <div class="l" style="color:#92400E">摸索中</div>
-    </div></div>
-    <!-- 每阶段一格；points 的 y 越大情绪越低，谷底用红 #EF4444 + 😣 -->
-  </div>
-
-  <!-- ⑤ 痛点 -->
-  <div class="jrn-grid">
-    <div class="jrn-rl"><div class="jrn-rn">痛点</div><div class="jrn-re">Pain</div></div>
-    <div class="jrn-pw2"><div class="jrn-pc">
-      <div class="jrn-pi"><div class="jrn-pi-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div><div class="jrn-pt"><b>版本依赖复杂</b>，三者版本须精准匹配，一错全报</div></div>
-    </div></div>
-    <!-- 每阶段一个 jrn-pw2，每格 1-2 条 jrn-pi -->
-  </div>
-
-  <!-- ⑥ 机会点 -->
-  <div class="jrn-grid">
-    <div class="jrn-rl"><div class="jrn-rn">机会点</div><div class="jrn-re">Opps</div></div>
-    <div class="jrn-ow"><div class="jrn-oc">
-      <div class="jrn-oi"><div class="jrn-oi-dot"></div><div class="jrn-ot">一键环境容器，版本<b>自动匹配锁定</b></div></div>
-    </div></div>
-    <!-- 每阶段一个 jrn-ow -->
-  </div>
-
-</div></div>
-```
-
-### 要点
-
-- **列数 = `.jrn-grid` 的 `repeat(N,1fr)`**，6 行必须同步改成同一列数否则错位；首列固定 `56px` 行标。
-- **竖边框拼接**：每行 cell 只用 `border-left/right/bottom`（无 top），上下相邻拼成连续竖容器；阶段头 `border-radius:10px 10px 0 0`、机会点 `0 0 9px 9px` 收口。
-- **情绪行必须 `.jrn-grid.je` 显式锁高**（16vh）——格内全绝对定位，不锁高会被 flex 压扁（踩过）。
-- **行为行 mini UI 是手画线框**（`.jrn-scr` 内 `.jmb` 小条 + 彩色块拼）——工作量大但最贴主题；偷懒可换一句话或真截图。
-- 痛点红系（`#7F1D1D`/`#FEF3C7`）、机会点绿系（`#064E3B`/`#10B981`），色义固定。
+> 新建或改造用户旅程图时，使用 `user-journey-skill` 的 `assets/user-journey-template.html` 与 `references/journey-pattern.md`。它是唯一维护源：阶段、触点、行为、情绪、痛点、机会点六行逐列对应；包含改列方式、标题等高、情绪行锁高和 16:9 验收规则。
+>
+> 本 skill 的 `assets/deck-template.html` 中保留旧 `.jrn-*` 示例页，仅用于已生成 deck 的兼容维护；不要再复制这套旧骨架到新页面。嵌入 report deck 时仍需继承完整 deck runtime。
 
 ## 5. 竞品对照
 

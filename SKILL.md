@@ -37,7 +37,7 @@ description: 生成"产品 / 设计 / 研究汇报"风格的单文件网页 PPT�
    | 几个大数字/百分比/转化率/达成率/KPI overview/metrics/数据概览 | **§1 渐变胶囊指标** |
    | 计划/排期/里程碑/时间线/roadmap/甘特/泳道/Q1Q2/什么时候上线/sprint | **§2 甘特 roadmap** |
    | 用户反馈/原声/吐槽/访谈摘录/语录/VOC/voice of customer/调研摘要/客户怎么说 | **§3 VOC 声音墙** |
-   | 全流程/各阶段/端到端/触点/情绪曲线/journey/全链路/操作步骤的痛点/用户怎么一步步做 | **§4 用户旅程** |
+   | 全流程/各阶段/端到端/触点/情绪曲线/journey/全链路/操作步骤的痛点/用户怎么一步步做 | **`user-journey-skill`**（独立旅程图 skill） |
    | 竞品/友商/对手/同类工具/横向对比/benchmark/A vs B/选型/市面方案 | **§5 竞品对照** |
    | 介绍某个用户/他是谁/他的日常/角色特征/职责场景痛点/persona（单人·正式深描） | **§6a 用户画像·形式一**（左栏+右侧多区） |
    | 几类用户有什么不同/角色对比/能力维度对比/雷达图/多角色对照 | **§6b 用户画像·形式二**（顶栏+雷达，ECharts） |
@@ -81,7 +81,7 @@ description: 生成"产品 / 设计 / 研究汇报"风格的单文件网页 PPT�
 - `assets/template-library/index.html` — 可复制模板库，新增模板均用 `data-template / data-component / data-title` 标注；当前沉淀 `evidence-spotlight-matrix`、`derivation-column-flow`。
   新材料从 deck-template 起步；命中高级 pattern 时从 `components.md` 路由到 template-library 复制对应 section / CSS / JS。⚠️ 用户画像有**三套形式（一/二/三），按输入三选一**：正式深描单人→形式一、多人雷达对比→形式二、白板便利贴速写单人→形式三（详见 components.md §6a/§6b/§6c 顶部「三种形式怎么选」对照表）
 - `references/type-and-color.md` — 字号 ramp（6 token）+ 渐变色彩系统 + 玻璃卡公式 + 鸿蒙字体加载
-- `references/components.md` — 唯一选件路由入口 + 组件骨架：胶囊条 / 甘特 / VOC 墙 / **头像生成与使用规范(§3a)** / 用户旅程 / 竞品对照 / 用户画像三形式 / KPI / glass card / head / 评分热力矩阵 / 分层架构 / 数据突出卡 / 生态干系人地图(§12) / 2×2 机会矩阵(§13) / 图+文 sm2 模式(§14) / 证据聚光灯(§15) / 四栏推导流(§16)
+- `references/components.md` — 唯一选件路由入口 + 组件骨架：胶囊条 / 甘特 / VOC 墙 / **头像生成与使用规范(§3a)** / 竞品对照 / 用户画像三形式 / KPI / glass card / head / 评分热力矩阵 / 分层架构 / 数据突出卡 / 生态干系人地图(§12) / 2×2 机会矩阵(§13) / 图+文 sm2 模式(§14) / 证据聚光灯(§15) / 四栏推导流(§16)。用户旅程的完整规则和样板见独立 `user-journey-skill`。
 - `references/deck-architecture.md` — 单文件 deck 机制 + 多分册 `build_index.py` 合并模式
 - `references/chart-selection.md` — 手画优先原则 + ECharts/ApexCharts 选型
 - `references/pitfalls.md` — 踩坑清单（间距 / 头像 / SVG / 甘特 / 合并）
