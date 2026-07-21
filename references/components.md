@@ -1305,7 +1305,7 @@ function textRight(el){
 
 ### 共通约束
 
-- 卡片同为 `aspect-ratio:4/5` 附近的方/竖比例；不要做扁横长条。标题区预留两行高度并底对齐，描述紧跟标题。**四张及以上**把标签、标题、描述包成一个阅读组，在避开右下水印图标后整体垂直居中；标题用 `--fs-h1`，说明用 `--fs-h3`，不要仍用落底的小字结构。
+- 卡片同为 `aspect-ratio:4/5` 附近的方/竖比例；不要做扁横长条。**无论卡片数量**，标签、标题、描述都包成一个阅读组，在避开右下水印图标后整体垂直居中；标题区仍预留两行高度并底对齐，标题用 `--fs-h1`，说明用 `--fs-h3`，不要再做贴顶标签 + 底部小字结构。
 - 4 张以上时，每张卡挑一个有语义的 `--c-*`。同卡的 tag、Lucide 大图标、顶部横向淡光带必须共用该 token；卡片底保持透白，**禁止**实色满铺、顶部彩色描边、圆形光晕和右上角重复小 icon。
 - 4--5 张默认用靛/蓝/青/绿/粉（`--c-indigo / blue / teal / green / pink`）。紫仅在“策略/创新”语义明确时替换其中一张；靛/紫、红/玫红、绿/薄荷不要默认同墙并用，橙/琥珀/黄最多选两种。红/橙/黄只在风险、提醒、进行中确有语义时加入。
 - 图标优先 Lucide，放右下作为淡水印，不放在页面标题前；同卡的标签、图标、顶部光带只用一个 `--c-*`。标签不再孤立贴顶，而应放入居中的阅读组；标题多一行不会把描述顶到不同高度。
@@ -1319,9 +1319,9 @@ function textRight(el){
 <section class="slide s-gray" data-template="peer-cards-three" data-component="同层级信息卡" data-title="三张同级卡以主次色彩建立阅读顺序">
   <div class="head">...</div>
   <div class="body-area"><div class="peer-wrap"><div class="peer-grid peer-three">
-    <article class="peer-card neutral"><i data-lucide="layers-3"></i><span class="peer-tag">Context</span><div class="peer-copy"><h3>先交代背景</h3><p>白玻璃卡承载中性事实与前提。</p></div></article>
-    <article class="peer-card accent"><i data-lucide="focus"></i><span class="peer-tag">Focus</span><div class="peer-copy"><h3>再突出重点</h3><p>蓝紫渐变卡只承载本页的主变化。</p></div></article>
-    <article class="peer-card ink"><i data-lucide="badge-check"></i><span class="peer-tag">Conclusion</span><div class="peer-copy"><h3>最后落到结论</h3><p>墨色卡只放最终判断或行动。</p></div></article>
+    <article class="peer-card neutral"><i data-lucide="layers-3"></i><div class="peer-copy"><span class="peer-tag">Context</span><h3>先交代背景</h3><p>白玻璃卡承载中性事实与前提。</p></div></article>
+    <article class="peer-card accent"><i data-lucide="focus"></i><div class="peer-copy"><span class="peer-tag">Focus</span><h3>再突出重点</h3><p>蓝紫渐变卡只承载本页的主变化。</p></div></article>
+    <article class="peer-card ink"><i data-lucide="badge-check"></i><div class="peer-copy"><span class="peer-tag">Conclusion</span><h3>最后落到结论</h3><p>墨色卡只放最终判断或行动。</p></div></article>
   </div></div></div>
 </section>
 
