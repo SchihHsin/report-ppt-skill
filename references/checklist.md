@@ -43,6 +43,7 @@
 ## D. 对齐
 - [ ] **不要双层 padding**：`.slide` 已带 `padding:5vh 4vw`；主体区**别再叠一层同方向 padding**，否则主体比页眉/页脚多缩一截、左右对不齐
 - [ ] 页眉（章节小标题 + 大标题）、主体、页脚的左右边都对到**同一条边线**
+- [ ] 浅底内容页右上使用同一组 `.section-tabs`：全部主章节顺序一致，只有当前章节为深色高亮；**没有**孤立的小字页码、年份、章节内页序或 `chapter-position`。封面和目录页不放 Tab，黑底设计点页仍用自身 `.chrome`。
 - [ ] 绝对定位的子元素**无视父 padding** → 要内边距就加一层 `position:absolute;inset:…` 的内层容器
 - [ ] **卡内分类标签 / chip / badge 只包住文字**，不是横向分隔条：检查其计算宽度明显小于卡片可用宽度；使用 `display:inline-flex;align-self:flex-start;width:fit-content;max-width:100%`。不得写 `width:100%`、`display:block`，也不得被父级默认 `stretch` 拉满。标签优先 1--3 个词；超长就精简或在自身宽度内换行。
 - [ ] **目录按章节数选择固定 class**：3/4/5 章分别使用 `contents-3/4/5` 并保持单行；6 章使用 `contents-6`（3×2）。不得用 `auto-fit/auto-fill` 生成 4+1 或 3+2 的孤卡布局；7+ 章改为合并章节或主目录 + 附录目录。

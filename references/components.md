@@ -1,6 +1,6 @@
 # 组件库（骨架 + 关键 CSS）
 
-> 通用件（**封面** / `head`（logo + 标题）/ `.card` 玻璃卡 / 胶囊指标条 / `#nav`）模板里**默认就有**，见 `assets/deck-template.html`。本文件补充其余高频组件。每页都用 `head`（logo + 结论标题 + 副标 + 页码）。
+> 通用件（**封面** / `head`（logo + 标题 + 章节 Tab）/ `.card` 玻璃卡 / 胶囊指标条 / `#nav`）模板里**默认就有**，见 `assets/deck-template.html`。本文件补充其余高频组件。浅底内容页用 `head`（logo + 结论标题 + 副标 + 章节 Tab）。
 
 ## ⭐ 选件路由（用户这么说 → 命中这个件）
 
@@ -42,6 +42,31 @@
 - **⛔ 页面标题前默认什么都不放——绝不放任何装饰性 icon。** 这是复用 skill 时最容易犯的错：head 的 `.brand` 槽**默认留空，只有标题 `.ttl`**；**仅当用户明确要 logo 时才加**（`<img class="logo" src="CANNlogo.png">` / 深底 `cann-dark-logo.svg`；给了别的真 logo 就换那个）。封面 `.cv-logo` 大 logo 不在此列。**严禁**在页面标题或区块标题前顶 Lucide / 通用 SVG 小图标。
 - 装饰图标**只允许存在于个别精调组件内部**（如用户画像 `.pf-h2` 自带的圈形图标，是该组件的一部分），**不是通用模式**，不要外扩到别的标题上。
 - **`.head-l` 小字（`.subttl`）视觉上在大字标题（`.brand .ttl`）上面**：`.head-l{display:flex;flex-direction:column-reverse;gap:.8vh}`（HTML 里 `.brand` 仍写在 `.subttl` 前面，靠 `column-reverse` 反转视觉顺序，别真的把 HTML 顺序倒过来）。`.subttl` 这行**通常是这页所属的章节/分类名**（如 `User Research` / `Competitive Analysis`），跟 `.brand .ttl` 那句结论型大标题是两个层级：大标题对内容负责（说这页的发现），小标题对全局结构负责（说这页归哪一类）——一份多页 deck 建议先定 3–5 个章节，再把每页的 `.subttl` 改成对应章节名，让总览/快速翻页时能一眼看出分组，不要每页各写一句不成体系的英文短语。
+
+### 右上章节 Tab（浅底内容页默认）
+
+- 使用参考页同款 `.section-tabs`：横向列出整份汇报的主章节，**只有当前章节**使用深色胶囊高亮。每一页都保持相同顺序和相同文字，只切换 `.active`。
+- Tab 的职责是定位「当前页属于哪一章」，不是页码栏：**禁止**右上再放年份、`01 / 12`、章节内页序、`chapter-position` 或解释性小字。
+- Tab 文案写「两位章节号 + 2--4 字章节名」，例如 `01 研究概览`。章节太多先合并；不要为了塞满 Tab 缩小字号或写长句。
+- 封面、目录页不放 Tab；黑底设计点页保留自身 `.chrome`。不要把 `.head-r` 小字样式带入新的浅底内容页。
+
+```css
+.section-tabs{display:flex;align-items:center;gap:5px;flex:0 0 auto;margin-left:auto;padding:.45vh .48vw;border:1px solid rgba(127,137,157,.18);border-radius:999px;background:rgba(255,255,255,.46)}
+.section-tabs span{padding:.42vh .6vw;border-radius:999px;font:600 var(--fs-sm)/1.2 'HarmonyOS Sans SC','Noto Sans SC',sans-serif;color:var(--ink-3);white-space:nowrap}
+.section-tabs span.active{background:var(--g-ink);color:#fff;box-shadow:0 3px 10px -6px rgba(20,25,35,.5)}
+```
+
+```html
+<div class="head">
+  <div class="head-l">
+    <div class="brand"><span class="ttl">文档、调试与环境配置构成三类核心障碍</span></div>
+    <div class="subttl">用户研究</div>
+  </div>
+  <div class="section-tabs" aria-label="当前章节">
+    <span>01 研究概览</span><span class="active">02 用户研究</span><span>03 竞品对照</span><span>04 方案设计</span>
+  </div>
+</div>
+```
 
 ## 1. 关键指标 · 多彩渐变胶囊（精调模板之一，模板默认页就是它）
 
@@ -743,7 +768,6 @@
 <section class="slide s-gray contents-slide" data-template="contents-directory" data-component="目录页" data-title="六个章节建立从研究问题到研究资产的阅读路径">
   <div class="head">
     <div class="head-l"><div class="brand"><span class="ttl">目录</span></div></div>
-    <div class="head-r">01 / CONTENTS</div>
   </div>
   <div class="body-area"><div class="contents-directory contents-6">
     <article class="directory-card overview"><div class="directory-no">01</div><h2 class="directory-name">研究概览</h2><div class="directory-en">Research Overview</div><div class="directory-items"><span>研究问题</span><span>范围与对象</span></div><div class="directory-note">明确本次汇报要回答的问题</div></article>
