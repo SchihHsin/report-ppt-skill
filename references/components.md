@@ -692,6 +692,65 @@
 </section>
 ```
 
+## 18. 目录页（章节阅读路径）
+
+> **data-template**：`contents-directory`
+>
+> **命中**：目录 / 章节目录 / contents / agenda / “这一份汇报讲什么” / 章节概览。目录是建立阅读顺序的导航页，不是总结、问题或同层级信息卡页；不要套 §17。
+
+### 数量路由（硬规则）
+
+| 章节数 | grid class | 版式 |
+|---|---|---|
+| 3 | `contents-3` | 单行 3 列 |
+| 4 | `contents-4` | 单行 4 列 |
+| 5 | `contents-5` | 单行 5 列 |
+| 6 | `contents-6` | 3×2，上下两行 |
+| 7+ | 不直接排 | 合并章节，或拆为主目录 + 附录目录 |
+
+禁止 `auto-fit` / `auto-fill`：5 章会落成 4+1、4 章可能被压成两行，都会制造孤卡。3--5 章必须横向一排；6 章才可分上下两行。目录卡比 §17 信息卡更扁，只承载章节扫读。
+
+### 内容与视觉约束
+
+- 每卡顺序固定为：**两位章节号 → 中文章节名 → 英文辅助名 → 1--2 个内容锚点 → 一句章节职责**。
+- 章节号用细长展示字体和同卡局部色；中文名可读、英文名辅助；锚点只能是短语，不能写成长段落。
+- 章节职责置底，用细分隔线与主体隔开；只说明本章要完成的阅读任务，**不提前写研究发现或方案结论**。
+- 使用冷灰底、透白玻璃卡与低饱和语义色；不要做满铺彩色卡、无意义 icon 或渐变彩虹墙。
+- 目录中的中文章节名必须和各章节页 `.subttl`、页脚、总结、附录一致；改名后全局检索旧词。
+- 文案过长时先缩短章节名、英文名和锚点；不得缩字号、加第三条锚点或改成两行布局来硬塞。
+
+### CSS 骨架
+
+```css
+.contents-directory{width:min(1120px,100%);margin:0 auto;display:grid;gap:1vw;align-items:stretch}
+.contents-directory.contents-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.contents-directory.contents-4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.contents-directory.contents-5{grid-template-columns:repeat(5,minmax(0,1fr))}
+.contents-directory.contents-6{grid-template-columns:repeat(3,minmax(0,1fr))}
+.directory-card{--dir:var(--c-indigo);position:relative;min-width:0;min-height:22vh;overflow:hidden;padding:1.8vh 1.25vw 1.35vh;display:flex;flex-direction:column;background:rgba(255,255,255,.58);border:1px solid rgba(255,255,255,.88);border-radius:14px}
+.directory-no{font-family:'Barlow Condensed','Inter',sans-serif;font-size:clamp(54px,5.4vw,86px);line-height:.82;font-weight:700;color:var(--dir)}
+.directory-name{margin-top:1.35vh;font-size:var(--fs-h2);line-height:1.2;font-weight:950}.directory-en{margin-top:.42vh;font-size:var(--fs-sm);font-weight:700;color:color-mix(in srgb,var(--dir) 76%,#596575)}
+.directory-items{display:grid;gap:.52vh;margin-top:2.65vh}.directory-items span{font-size:var(--fs-body);line-height:1.36;color:var(--ink-2)}
+.directory-note{margin-top:auto;padding-top:1.25vh;border-top:1px solid rgba(47,61,99,.14);font-size:var(--fs-sm);font-weight:900;line-height:1.35;color:color-mix(in srgb,var(--dir) 72%,#465364)}
+```
+
+### 最小 HTML 骨架
+
+从 `assets/template-library/index.html` 复制完整 `contents-directory` section 与 CSS，再按目录章节数选择 `contents-3` 到 `contents-6`：
+
+```html
+<section class="slide s-gray contents-slide" data-template="contents-directory" data-component="目录页" data-title="六个章节建立从研究问题到研究资产的阅读路径">
+  <div class="head">
+    <div class="head-l"><div class="brand"><span class="ttl">目录</span></div><div class="subttl">CONTENTS · 本次汇报的阅读路径</div></div>
+    <div class="head-r">01 / CONTENTS</div>
+  </div>
+  <div class="body-area"><div class="contents-directory contents-6">
+    <article class="directory-card overview"><div class="directory-no">01</div><h2 class="directory-name">研究概览</h2><div class="directory-en">Research Overview</div><div class="directory-items"><span>研究问题</span><span>范围与对象</span></div><div class="directory-note">明确本次汇报要回答的问题</div></article>
+    <!-- 补到对应卡数；不要留空卡。 -->
+  </div></div>
+</section>
+```
+
 ### HTML 骨架 · 版式②（上下堆叠 hero）
 
 ```html

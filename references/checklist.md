@@ -45,6 +45,7 @@
 - [ ] 页眉（章节小标题 + 大标题）、主体、页脚的左右边都对到**同一条边线**
 - [ ] 绝对定位的子元素**无视父 padding** → 要内边距就加一层 `position:absolute;inset:…` 的内层容器
 - [ ] **卡内分类标签 / chip / badge 只包住文字**，不是横向分隔条：检查其计算宽度明显小于卡片可用宽度；使用 `display:inline-flex;align-self:flex-start;width:fit-content;max-width:100%`。不得写 `width:100%`、`display:block`，也不得被父级默认 `stretch` 拉满。标签优先 1--3 个词；超长就精简或在自身宽度内换行。
+- [ ] **目录按章节数选择固定 class**：3/4/5 章分别使用 `contents-3/4/5` 并保持单行；6 章使用 `contents-6`（3×2）。不得用 `auto-fit/auto-fill` 生成 4+1 或 3+2 的孤卡布局；7+ 章改为合并章节或主目录 + 附录目录。
 
 ## E. 图片
 - [ ] 图一律 **固定 `height`(vh) + `overflow:hidden` + `object-fit:cover`**（满铺）或 `contain`（完整显示）；**禁裸 `aspect-ratio`**——内容/比例一变会撑破布局
