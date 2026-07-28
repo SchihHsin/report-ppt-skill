@@ -1306,6 +1306,7 @@ function textRight(el){
 ### 共通约束
 
 - 卡片同为 `aspect-ratio:4/5` 附近的方/竖比例；不要做扁横长条。**无论卡片数量**，标签、标题、描述都包成一个阅读组，在避开右下水印图标后整体垂直居中。阅读组固定为**标签 / 两行标题 / 三行说明**三条轨道，标签到标题用紧凑间距；标题用 `--fs-h1`、说明用 `--fs-h3`。这样三张卡即使文字高度不同，标签与标题仍跨卡严格对齐，变长说明只占自己的说明轨道；不要再做贴顶标签 + 底部小字结构。
+- **标签是内容标记，不是整行装饰条**：`.peer-tag` 必须随文字收缩：`display:inline-flex; align-self:flex-start; width:fit-content; max-width:100%; box-sizing:border-box`。不得设 `width:100%` 或 `display:block`；父容器若是 `display:flex/flex-direction:column` 或 `display:grid`，也必须保留 `align-self:flex-start`，避免默认 stretch 拉成整张卡宽。标签文案优先 1--3 个词；长词在 `max-width:100%` 内换行或精简，**不能**以横向撑满卡片来规避换行。
 - 4 张以上时，每张卡挑一个有语义的 `--c-*`。同卡的 tag、Lucide 大图标、顶部横向淡光带必须共用该 token；卡片底保持透白，**禁止**实色满铺、顶部彩色描边、圆形光晕和右上角重复小 icon。
 - 4--5 张默认用靛/蓝/青/绿/粉（`--c-indigo / blue / teal / green / pink`）。紫仅在“策略/创新”语义明确时替换其中一张；靛/紫、红/玫红、绿/薄荷不要默认同墙并用，橙/琥珀/黄最多选两种。红/橙/黄只在风险、提醒、进行中确有语义时加入。
 - 图标优先 Lucide，放右下作为淡水印，不放在页面标题前；同卡的标签、图标、顶部光带只用一个 `--c-*`。标签不再孤立贴顶，而应放入居中的阅读组；标题多一行不会把描述顶到不同高度。
@@ -1313,6 +1314,19 @@ function textRight(el){
 ### 可复制模板
 
 从 `assets/template-library/index.html` 复制完整 section 与 `.peer-*` CSS：
+
+```css
+/* 卡内分类标签：随内容收缩，不能变成横向色条。 */
+.peer-tag{
+  display:inline-flex;
+  align-self:flex-start;
+  width:fit-content;
+  max-width:100%;
+  box-sizing:border-box;
+  align-items:center;
+  overflow-wrap:anywhere;
+}
+```
 
 ```html
 <!-- 恰好三张：white / accent / ink -->
