@@ -714,7 +714,7 @@
 
 - 每卡顺序固定为：**两位章节号 → 中文章节名 → 英文辅助名 → 1--2 个内容锚点 → 一句章节职责**。
 - 左上页眉只写「目录」；不要再加英文副标题、阅读路径或解释性文案。
-- 章节号固定使用 **Barlow Condensed Bold（700）**，以 `Inter` 为回退；保持两位数、同卡局部色与紧凑字距，不要换成中文正文字体。中文名可读、英文名辅助；锚点只能是短语，不能写成长段落。
+- 章节号固定使用 **Barlow Condensed Light（300）**，以 `Inter` 为回退；保持两位数、同卡局部色与紧凑字距，不要换成中文正文字体。原模板的 CSS 虽写 `700`，但实际只加载到 `400`，以明确加载的 `300` 细字效果为准。中文名可读、英文名辅助；锚点只能是短语，不能写成长段落。
 - 章节职责置底，用细分隔线与主体隔开；只说明本章要完成的阅读任务，**不提前写研究发现或方案结论**。
 - 使用冷灰底、透白玻璃卡与低饱和语义色；不要做满铺彩色卡、无意义 icon 或渐变彩虹墙。
 - 目录中的中文章节名必须和各章节页 `.subttl`、页脚、总结、附录一致；改名后全局检索旧词。
@@ -729,7 +729,7 @@
 .contents-directory.contents-5{grid-template-columns:repeat(5,minmax(0,1fr))}
 .contents-directory.contents-6{grid-template-columns:repeat(3,minmax(0,1fr))}
 .directory-card{--dir:var(--c-indigo);position:relative;min-width:0;min-height:22vh;overflow:hidden;padding:1.8vh 1.25vw 1.35vh;display:flex;flex-direction:column;background:rgba(255,255,255,.58);border:1px solid rgba(255,255,255,.88);border-radius:14px}
-.directory-no{font-family:'Barlow Condensed','Inter',sans-serif;font-size:clamp(54px,5.4vw,86px);line-height:.82;font-weight:700;color:var(--dir)}
+.directory-no{font-family:'Barlow Condensed','Inter',sans-serif;font-size:clamp(54px,5.4vw,86px);line-height:.82;font-weight:300;color:var(--dir)}
 .directory-name{margin-top:1.35vh;font-size:var(--fs-h2);line-height:1.2;font-weight:950}.directory-en{margin-top:.42vh;font-size:var(--fs-sm);font-weight:700;color:color-mix(in srgb,var(--dir) 76%,#596575)}
 .directory-items{display:grid;gap:.52vh;margin-top:2.65vh}.directory-items span{font-size:var(--fs-body);line-height:1.36;color:var(--ink-2)}
 .directory-note{margin-top:auto;padding-top:1.25vh;border-top:1px solid rgba(47,61,99,.14);font-size:var(--fs-sm);font-weight:900;line-height:1.35;color:color-mix(in srgb,var(--dir) 72%,#465364)}
