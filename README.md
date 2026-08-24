@@ -1,8 +1,12 @@
 # report-ppt-skill
 
-一个用于 **Claude Code / Claude Agent** 的 Skill：生成「产品 / 设计 / 研究汇报」风格的**单文件网页 PPT**（纵向 scroll-snap 整页翻页 deck，带概览 / 全屏 / 多种翻页过渡）。偏企业内部的分析 + 方案型汇报，信息密度高、组件成体系。
+一个可供 **Claude Code、Codex、OpenCode、WorkBuddy** 等支持本地 Skill / Agent 指令目录的 AI 编程助手使用的通用 Skill：生成「产品 / 设计 / 研究汇报」风格的**单文件网页 PPT**（纵向 scroll-snap 整页翻页 deck，带概览 / 全屏 / 多种翻页过渡）。偏企业内部的分析 + 方案型汇报，信息密度高、组件成体系。
 
 > 由「CANN DesignConcept 2026」汇报 deck 提炼而成。
+
+**在线模板总览**：[https://schihhsin.github.io/materials/](https://schihhsin.github.io/materials/)
+
+**完整网页 PPT 样例**：[CANN DesignConcept 2026](https://schihhsin.github.io/materials/cann-design-concept/)
 
 ## 三基调
 
@@ -44,17 +48,25 @@
 
 ## 安装
 
-作为 Claude Code Skill 使用——把整个目录放到 skills 目录即可：
+这是一个以 `SKILL.md` 为入口的通用 Skill 包。把整个目录放进所用 AI 编程助手可发现的 skills 目录即可；不同客户端的目录约定不同。下面是常见路径：
 
 ```bash
-# 用户级（所有项目可用）
+# Claude Code：用户级（所有项目可用）
 git clone git@github.com:SchihHsin/report-ppt-skill.git ~/.claude/skills/report-ppt-skill
 
-# 或 项目级（仅该项目）
+# Claude Code：项目级（仅该项目）
 git clone git@github.com:SchihHsin/report-ppt-skill.git <项目>/.claude/skills/report-ppt-skill
+
+# Codex：用户级
+git clone git@github.com:SchihHsin/report-ppt-skill.git ~/.codex/skills/report-ppt-skill
+
+# OpenCode：用户级
+git clone git@github.com:SchihHsin/report-ppt-skill.git ~/.config/opencode/skills/report-ppt-skill
 ```
 
-之后让 Claude「做一份 XX 汇报 / 研究 / 竞品分析 / 数据分析 PPT」即可命中。
+WorkBuddy 或其他客户端：将本仓库放到该工具约定的用户级或项目级 Skill 目录，并确保它会读取根目录的 `SKILL.md`。如果工具支持从 GitHub 仓库安装，直接提供仓库地址即可：`https://github.com/SchihHsin/report-ppt-skill`。
+
+安装后，让对应的 AI 助手处理“做一份 XX 汇报 / 研究 / 竞品分析 / 数据分析 PPT”即可命中；也可以明确说“使用 report-ppt-skill”。
 
 ## 用法
 
@@ -74,7 +86,7 @@ git clone git@github.com:SchihHsin/report-ppt-skill.git <项目>/.claude/skills/
 
 用户说“全流程 / 端到端 / 触点 / 情绪曲线 / 各阶段痛点 / journey map”时，使用独立的 `user-journey-skill`。它提供单一的旅程图维护源和可复制样板，固定阶段、触点、行为、情绪、痛点、机会点六行逐列对应；情绪曲线允许逐格和格间留白，但每一条独立线的相邻格公共边界必须同高。对比中的两条线各自连续，彼此无需同高。嵌入本 deck 时仍须保留本 skill 的完整翻页、概览和全屏 runtime。
 
-样例页：① 封面 ② 关键指标(多彩渐变胶囊) ③ 竞品对照 ④ 用户画像·形式一 ⑤ 甘特 roadmap ⑥ 黑底章节封面(调色面板·localStorage 持久记忆) ⑦ 黑底设计点·版式①左文右图 ⑧ 黑底设计点·版式②上下堆叠 hero。
+样例页：① 封面 ② 目录（4 章横排）③ 关键指标(多彩渐变胶囊) ④ 竞品对照 ⑤ 用户画像·形式一 ⑥ 甘特 roadmap ⑦ 黑底章节封面(调色面板·localStorage 持久记忆) ⑧ 黑底设计点·版式①左文右图 ⑨ 黑底设计点·版式②上下堆叠 hero。
 
 > ⚠️ 用户画像有**三套形式（一/二/三），按内容三选一**：正式深描单人→形式一、多角色雷达对比→形式二、白板便利贴速写单人→形式三（详见 `components.md §6a/§6b/§6c`）。
 > ⚠️ 黑底设计点有**两种版式**：①左文右图（要点多）/ ②上下堆叠 hero（大图为主），见 `components.md §8`。
@@ -86,7 +98,7 @@ git clone git@github.com:SchihHsin/report-ppt-skill.git <项目>/.claude/skills/
 SKILL.md                  主文件（三基调 / 工作流 / 铁律 / 索引）
 references/               规范与组件骨架
 assets/
-  deck-template.html      7 页起手模板
+  deck-template.html      9 页起手模板（含目录页）
   template-library/       可复制高级 pattern 模板库（带 data-template 元信息）
   cover-bg.png · cann-dark-logo.svg · CANNlogo.png · persona.svg · cmp-*.jpg   示例素材
 ```
