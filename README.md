@@ -1,20 +1,46 @@
 # report-ppt-skill
 
-一个可供 **Claude Code、Codex、OpenCode、WorkBuddy** 等支持本地 Skill / Agent 指令目录的 AI 编程助手使用的通用 Skill：生成「产品 / 设计 / 研究汇报」风格的**单文件网页 PPT**（纵向 scroll-snap 整页翻页 deck，带概览 / 全屏 / 多种翻页过渡）。偏企业内部的分析 + 方案型汇报，信息密度高、组件成体系。
-
-> 由「CANN DesignConcept 2026」汇报 deck 提炼而成。
-
 **在线模板总览**：[https://schihhsin.github.io/materials/](https://schihhsin.github.io/materials/)
 
 **完整网页 PPT 样例**：[CANN DesignConcept 2026](https://schihhsin.github.io/materials/cann-design-concept/)
 
-## 三基调
+一个面向 **Claude Code、Codex、OpenCode、WorkBuddy** 等 AI 编程助手的通用 Skill，用于生成产品、设计和研究汇报风格的**单文件网页 PPT**。它由「CANN DesignConcept 2026」实践沉淀而来，适合企业内部的分析 + 方案型汇报：信息密度足够、叙事有判断、视觉和组件可复用。
+
+## 适合做什么
+
+- 产品方案、设计概念、体验优化、设计点汇报
+- 用户研究、VOC、用户画像、用户旅程、竞品与能力分析
+- 指标洞察、路线图、实施规划、面向管理者的决策摘要
+
+成品是一个可直接打开和交付的 HTML deck：纵向整页翻页，带概览、全屏、键盘控制、URL 页码定位和 5 种可选翻页过渡。
+
+## 三种页面基调
 
 | 基调 | 氛围 | 承载内容 |
 |---|---|---|
 | ① 封面 | 大图作底 + 深色叠加 | 标题页 / 章节封 |
 | ② 灰底分析篇 | 冷灰 + 玻璃折射白卡 + 底部大波浪 + 蓝紫 accent | 数据洞察 / VOC / 竞品 / 用户旅程 / 用户画像 / 甘特 roadmap |
 | ③ 黑底设计点 | 纯黑 + 底部渐变光晕 + 渐变标题字 | 问题 / 方案 / 设计点（可一章一色，带调色面板） |
+
+常见阅读路径是：**封面 → 灰底分析（现状与洞察）→ 黑底设计点（方案）→ 灰底 roadmap（行动）**。封面沿用既有汇报式大图与品牌表达；叙事规则不会额外限制封面的视觉做法。
+
+## 已沉淀的能力
+
+| 能力 | 当前做法 |
+|---|---|
+| 叙事与文案 | 先明确受众决策、核心判断和章节承接；标题必须凝练为本页发现或设计判断，并区分证据、推论与待验证方案。方案/设计点页可选用「问题 → 期望用户状态 → 策略 → 设计点 → 用户收益 → 验证或依赖」的体验设计推导。 |
+| 目录与导航 | 封面后可放目录页；3 / 4 / 5 章横排，6 章 3×2，7+ 章先合并或拆附录。浅底内容页右上使用章节 Tab，高亮当前章节；不加孤立页码、年份或说明小字。 |
+| 组件路由 | 已有 VOC、竞品对照、三种用户画像、甘特 roadmap、图文分析、证据聚光灯、四栏推导流、同层级卡片等组件；先按内容意图路由，再复制对应骨架。 |
+| 用户旅程 | 全流程、触点、情绪曲线等需求使用独立 `user-journey-skill`；嵌入 deck 时仍保留本 Skill 的完整翻页和交互 runtime。 |
+| 卡片与视觉 | 3 张同级卡按事实 / 重点 / 结论建立白玻璃 / 渐变 / 墨色层级；4 张及以上用透白卡 + 语义色 icon。标签必须随文字收缩，不能变成整行色条。 |
+| 交付质量 | 统一 HarmonyOS Sans SC、六档字号 token、纯色/渐变色 token；交付前检查叙事、字号、溢出、对齐、图片和完整交互。 |
+
+## 快速开始
+
+1. 安装这个 Skill，或让你的 AI 编程助手从本仓库读取根目录 `SKILL.md`。
+2. 从 `assets/deck-template.html` 复制开始，**保留完整 runtime**：`#controls`、`#navDots`、概览、全屏、键盘、URL 定位及配套 CSS / JS 都不能删或另写简化版。
+3. 只替换 `#deck` 内的样例页内容：先在 `references/components.md` 的选件路由中找组件；需要高级页面时，从 `assets/template-library/index.html` 复制对应 `data-template` 的完整 HTML / CSS / JS。
+4. 打开浏览器实际检查概览、全屏和翻页；再按 `references/checklist.md` 逐页检查。
 
 ## 设计规范速览
 
@@ -28,7 +54,7 @@
 - **logo 分深/浅两版按底色选**：深色底用白/反白版，浅色底用深色/彩色版。
 - **头像**：VOC / 用户画像无授权真人照片时，用本地 DiceBear SVG；生成参数、落盘和组件容器统一见 `references/components.md §3a`。
 
-详见 `references/`：`type-and-color.md` · `components.md` · `deck-architecture.md` · `chart-selection.md` · `pitfalls.md` · **`checklist.md`（交付前每页必跑的质检清单）**。
+执行细则见 `references/`：`narrative-and-copy.md` · `type-and-color.md` · `components.md` · `deck-architecture.md` · `chart-selection.md` · `pitfalls.md` · **`checklist.md`（交付前每页必跑的质检清单）**。
 
 ## 翻页过渡（5 种，可切换）
 
@@ -68,11 +94,7 @@ WorkBuddy 或其他客户端：将本仓库放到该工具约定的用户级或�
 
 安装后，让对应的 AI 助手处理“做一份 XX 汇报 / 研究 / 竞品分析 / 数据分析 PPT”即可命中；也可以明确说“使用 report-ppt-skill”。
 
-## 用法
-
-1. 复制 `assets/deck-template.html` 作为起点，**保留完整 deck runtime**：底部图标控制栏、右侧导航、概览、全屏、键盘、URL 页码与配套 CSS / JS 一律不删不重写。
-2. 只删改 `#deck` 内的样例页，从 `references/components.md` 顶部「选件路由」选择组件；高级 pattern 可从 `assets/template-library/index.html` 复制对应 `data-template` 页面。
-3. 浏览器打开自检：实际点一次概览与全屏，并试不同翻页过渡 `?t=fade|cut|slide-h|magic`。
+## 常用页面与资源
 
 ### 目录页
 
@@ -86,7 +108,14 @@ WorkBuddy 或其他客户端：将本仓库放到该工具约定的用户级或�
 
 用户说“全流程 / 端到端 / 触点 / 情绪曲线 / 各阶段痛点 / journey map”时，使用独立的 `user-journey-skill`。它提供单一的旅程图维护源和可复制样板，固定阶段、触点、行为、情绪、痛点、机会点六行逐列对应；情绪曲线允许逐格和格间留白，但每一条独立线的相邻格公共边界必须同高。对比中的两条线各自连续，彼此无需同高。嵌入本 deck 时仍须保留本 skill 的完整翻页、概览和全屏 runtime。
 
-样例页：① 封面 ② 目录（4 章横排）③ 关键指标(多彩渐变胶囊) ④ 竞品对照 ⑤ 用户画像·形式一 ⑥ 甘特 roadmap ⑦ 黑底章节封面(调色面板·localStorage 持久记忆) ⑧ 黑底设计点·版式①左文右图 ⑨ 黑底设计点·版式②上下堆叠 hero。
+### 模板与组件入口
+
+- `assets/deck-template.html`：9 页起手 deck，含封面、目录、灰底分析、黑底设计点和完整 runtime。
+- `assets/template-library/index.html`：可复制的高级 pattern 模板库；每页带 `data-template / data-component / data-title` 标记。
+- `references/components.md`：从用户意图到组件的唯一选件路由入口；命中专属组件时优先复用，不要重新手搓近似版式。
+- `references/checklist.md`：完成前逐页执行的质量检查清单。
+
+样例 deck 包含：① 封面 ② 目录（4 章横排）③ 关键指标（多彩渐变胶囊）④ 竞品对照 ⑤ 用户画像·形式一 ⑥ 甘特 roadmap ⑦ 黑底章节封面（调色面板·localStorage 持久记忆）⑧ 黑底设计点·版式①左文右图 ⑨ 黑底设计点·版式②上下堆叠 hero。
 
 > ⚠️ 用户画像有**三套形式（一/二/三），按内容三选一**：正式深描单人→形式一、多角色雷达对比→形式二、白板便利贴速写单人→形式三（详见 `components.md §6a/§6b/§6c`）。
 > ⚠️ 黑底设计点有**两种版式**：①左文右图（要点多）/ ②上下堆叠 hero（大图为主），见 `components.md §8`。
