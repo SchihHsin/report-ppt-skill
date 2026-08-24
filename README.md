@@ -21,6 +21,24 @@
 3. 只替换 `#deck` 内的样例页内容：先在 `references/components.md` 的选件路由中找组件；需要高级页面时，从 `assets/template-library/index.html` 复制对应 `data-template` 的完整 HTML / CSS / JS。
 4. 打开浏览器实际检查概览、全屏和翻页；再按 `references/checklist.md` 逐页检查。
 
+### 让 AI 助手安装
+
+把下面对应的 Prompt 直接发给 Codex 或 Claude Code；它会从本仓库下载（已有则更新）到**用户级** Skills 目录，并确认根目录 `SKILL.md` 存在。
+
+**给 Codex：**
+
+```text
+请安装或更新 report-ppt-skill。仓库地址是 https://github.com/SchihHsin/report-ppt-skill.git。
+将它放到用户级目录 ~/.codex/skills/report-ppt-skill；如果目录已经是 Git 仓库，就先安全地拉取更新，不要覆盖未提交的本地改动。完成后确认 ~/.codex/skills/report-ppt-skill/SKILL.md 存在，并告诉我最终版本（commit）和结果。不要创建项目级副本。
+```
+
+**给 Claude Code：**
+
+```text
+请安装或更新 report-ppt-skill。仓库地址是 https://github.com/SchihHsin/report-ppt-skill.git。
+将它放到用户级目录 ~/.claude/skills/report-ppt-skill；如果目录已经是 Git 仓库，就先安全地拉取更新，不要覆盖未提交的本地改动。完成后确认 ~/.claude/skills/report-ppt-skill/SKILL.md 存在，并告诉我最终版本（commit）和结果。不要创建项目级副本。
+```
+
 这是一个以 `SKILL.md` 为入口的通用 Skill 包。把整个目录放进所用 AI 编程助手可发现的 skills 目录即可；不同客户端的目录约定不同。下面是常见路径：
 
 ```bash
