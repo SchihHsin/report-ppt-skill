@@ -14,7 +14,41 @@
 
 成品是一个可直接打开和交付的 HTML deck：纵向整页翻页，带概览、全屏、键盘控制、URL 页码定位和 5 种可选翻页过渡。
 
-## 已有模板一览
+## 快速开始
+
+1. 安装这个 Skill，或让你的 AI 编程助手从本仓库读取根目录 `SKILL.md`。
+2. 从 `assets/deck-template.html` 复制开始，**保留完整 runtime**：`#controls`、`#navDots`、概览、全屏、键盘、URL 定位及配套 CSS / JS 都不能删或另写简化版。
+3. 只替换 `#deck` 内的样例页内容：先在 `references/components.md` 的选件路由中找组件；需要高级页面时，从 `assets/template-library/index.html` 复制对应 `data-template` 的完整 HTML / CSS / JS。
+4. 打开浏览器实际检查概览、全屏和翻页；再按 `references/checklist.md` 逐页检查。
+
+这是一个以 `SKILL.md` 为入口的通用 Skill 包。把整个目录放进所用 AI 编程助手可发现的 skills 目录即可；不同客户端的目录约定不同。下面是常见路径：
+
+```bash
+# Claude Code：用户级（所有项目可用）
+git clone git@github.com:SchihHsin/report-ppt-skill.git ~/.claude/skills/report-ppt-skill
+
+# Claude Code：项目级（仅该项目）
+git clone git@github.com:SchihHsin/report-ppt-skill.git <项目>/.claude/skills/report-ppt-skill
+
+# Codex：用户级
+git clone git@github.com:SchihHsin/report-ppt-skill.git ~/.codex/skills/report-ppt-skill
+
+# OpenCode：用户级
+git clone git@github.com:SchihHsin/report-ppt-skill.git ~/.config/opencode/skills/report-ppt-skill
+```
+
+WorkBuddy 或其他客户端：将本仓库放到该工具约定的用户级或项目级 Skill 目录，并确保它会读取根目录的 `SKILL.md`。如果工具支持从 GitHub 仓库安装，直接提供仓库地址即可：`https://github.com/SchihHsin/report-ppt-skill`。
+
+安装后，让对应的 AI 助手处理“做一份 XX 汇报 / 研究 / 竞品分析 / 数据分析 PPT”即可命中；也可以明确说“使用 report-ppt-skill”。
+
+## 模板与触发方式
+
+- `assets/deck-template.html`：9 页起手 deck，含封面、目录、灰底分析、黑底设计点和完整 runtime。
+- `assets/template-library/index.html`：可复制的高级 pattern 模板库；每页带 `data-template / data-component / data-title` 标记。
+- `references/components.md`：从用户意图到组件的唯一选件路由入口；命中专属组件时优先复用，不要重新手搓近似版式。
+- `references/checklist.md`：完成前逐页执行的质量检查清单。
+
+### 已有模板一览
 
 | 模板 / 组件 | 适用页面 | 触发方式（用户可能会说） | 获取位置 |
 |---|---|---|---|
@@ -39,7 +73,17 @@
 
 其中，`deck-template.html` 是**完整可运行的起手 deck**；模板库中的目录、证据聚光灯、四栏推导流、3 卡和多卡是可直接复制的高级页面。其余高频组件以 `components.md` 的骨架和规则为准，按内容需要组装进起手 deck。
 
-## 三种页面基调
+样例 deck 包含：① 封面 ② 目录（4 章横排）③ 关键指标（多彩渐变胶囊）④ 竞品对照 ⑤ 用户画像·形式一 ⑥ 甘特 roadmap ⑦ 黑底章节封面（调色面板·localStorage 持久记忆）⑧ 黑底设计点·版式①左文右图 ⑨ 黑底设计点·版式②上下堆叠 hero。
+
+### 模板使用提醒
+
+> ⚠️ 用户画像有**三套形式（一/二/三），按内容三选一**：正式深描单人→形式一、多角色雷达对比→形式二、白板便利贴速写单人→形式三（详见 `components.md §6a/§6b/§6c`）。
+> ⚠️ 黑底设计点有**两种版式**：①左文右图（要点多）/ ②上下堆叠 hero（大图为主），见 `components.md §8`。
+> ⚠️ 证据逐条讲解用 `evidence-spotlight-matrix`：没有现成内容时可新绘证据矩阵，已有矩阵 / 旅程图 / 流程图 / 截图组 / 架构图时优先保留原内容并叠加聚光灯；问题推导成结论用 `derivation-column-flow`。两者已沉淀在 `assets/template-library/index.html`。
+
+## 核心规范
+
+### 三种页面基调
 
 | 基调 | 氛围 | 承载内容 |
 |---|---|---|
@@ -49,7 +93,7 @@
 
 常见阅读路径是：**封面 → 灰底分析（现状与洞察）→ 黑底设计点（方案）→ 灰底 roadmap（行动）**。封面沿用既有汇报式大图与品牌表达；叙事规则不会额外限制封面的视觉做法。
 
-## 已沉淀的能力
+### 叙事、导航与组件
 
 | 能力 | 当前做法 |
 |---|---|
@@ -60,14 +104,19 @@
 | 卡片与视觉 | 3 张同级卡按事实 / 重点 / 结论建立白玻璃 / 渐变 / 墨色层级；4 张及以上用透白卡 + 语义色 icon。标签必须随文字收缩，不能变成整行色条。 |
 | 交付质量 | 统一 HarmonyOS Sans SC、六档字号 token、纯色/渐变色 token；交付前检查叙事、字号、溢出、对齐、图片和完整交互。 |
 
-## 快速开始
+### 目录页
 
-1. 安装这个 Skill，或让你的 AI 编程助手从本仓库读取根目录 `SKILL.md`。
-2. 从 `assets/deck-template.html` 复制开始，**保留完整 runtime**：`#controls`、`#navDots`、概览、全屏、键盘、URL 定位及配套 CSS / JS 都不能删或另写简化版。
-3. 只替换 `#deck` 内的样例页内容：先在 `references/components.md` 的选件路由中找组件；需要高级页面时，从 `assets/template-library/index.html` 复制对应 `data-template` 的完整 HTML / CSS / JS。
-4. 打开浏览器实际检查概览、全屏和翻页；再按 `references/checklist.md` 逐页检查。
+用户说“目录 / agenda / contents / 章节概览”时，从 `assets/template-library/index.html` 复制 `contents-directory`。它只建立阅读路径，不提前写研究结论：每张卡为「两位章节号 → 中文名 → 英文辅助名 → 1--2 个内容锚点 → 章节职责」。
 
-## 设计规范速览
+- 3 / 4 / 5 章：固定单行横排；6 章：3×2；7 章及以上先合并章节，或拆为主目录与附录目录。
+- 左上仅写「目录」，不加英文副标题；章节号使用 `Barlow Condensed` 300 字重。
+- 目录中的章节名须和各章节页、页脚、总结与附录保持一致。
+
+### 用户旅程图
+
+用户说“全流程 / 端到端 / 触点 / 情绪曲线 / 各阶段痛点 / journey map”时，使用独立的 `user-journey-skill`。它提供单一的旅程图维护源和可复制样板，固定阶段、触点、行为、情绪、痛点、机会点六行逐列对应；情绪曲线允许逐格和格间留白，但每一条独立线的相邻格公共边界必须同高。对比中的两条线各自连续，彼此无需同高。嵌入本 deck 时仍须保留本 skill 的完整翻页、概览和全屏 runtime。
+
+### 字体、颜色与组件细节
 
 - **字体**：HarmonyOS Sans SC（鸿蒙黑体，CDN @font-face），等宽标签用 JetBrains Mono。
 - **字号**：6 档 ramp token `--fs-h1/h2/h3/body/sm/xs`，普通页默认对齐 `cann-design-concept/index.html#16` 的 sm2 图文页正文尺度；正文/标题分级统一，超大展示数字除外。
@@ -81,7 +130,9 @@
 
 执行细则见 `references/`：`narrative-and-copy.md` · `type-and-color.md` · `components.md` · `deck-architecture.md` · `chart-selection.md` · `pitfalls.md` · **`checklist.md`（交付前每页必跑的质检清单）**。
 
-## 翻页过渡（5 种，可切换）
+## 交互与交付
+
+### 翻页过渡（5 种，可切换）
 
 默认上下滑动，另有 4 种可选。**地址加 `?t=xxx` 即时切换，不用改代码**（也可改脚本顶 `TRANSITION` 常量改默认）：
 
@@ -96,55 +147,6 @@
 - 例：`index.html?t=magic`、`index.html?t=fade`。
 - **magic（神奇移动）需配合**：在**相邻两页给同一个东西标相同 `data-key`**（如 logo / 标题 / 某张卡），翻页时该元素会从旧位置 / 大小平滑飞到新位置（FLIP）；没标 `data-key` 的页自动退化成淡入。
 - 架构：除默认 slide 外都走「受控叠层」`body.ctrl`，加新过渡只需多写一段 CSS。详见 `deck-architecture.md`。
-
-## 安装
-
-这是一个以 `SKILL.md` 为入口的通用 Skill 包。把整个目录放进所用 AI 编程助手可发现的 skills 目录即可；不同客户端的目录约定不同。下面是常见路径：
-
-```bash
-# Claude Code：用户级（所有项目可用）
-git clone git@github.com:SchihHsin/report-ppt-skill.git ~/.claude/skills/report-ppt-skill
-
-# Claude Code：项目级（仅该项目）
-git clone git@github.com:SchihHsin/report-ppt-skill.git <项目>/.claude/skills/report-ppt-skill
-
-# Codex：用户级
-git clone git@github.com:SchihHsin/report-ppt-skill.git ~/.codex/skills/report-ppt-skill
-
-# OpenCode：用户级
-git clone git@github.com:SchihHsin/report-ppt-skill.git ~/.config/opencode/skills/report-ppt-skill
-```
-
-WorkBuddy 或其他客户端：将本仓库放到该工具约定的用户级或项目级 Skill 目录，并确保它会读取根目录的 `SKILL.md`。如果工具支持从 GitHub 仓库安装，直接提供仓库地址即可：`https://github.com/SchihHsin/report-ppt-skill`。
-
-安装后，让对应的 AI 助手处理“做一份 XX 汇报 / 研究 / 竞品分析 / 数据分析 PPT”即可命中；也可以明确说“使用 report-ppt-skill”。
-
-## 常用页面与资源
-
-### 目录页
-
-用户说“目录 / agenda / contents / 章节概览”时，从 `assets/template-library/index.html` 复制 `contents-directory`。它只建立阅读路径，不提前写研究结论：每张卡为「两位章节号 → 中文名 → 英文辅助名 → 1--2 个内容锚点 → 章节职责」。
-
-- 3 / 4 / 5 章：固定单行横排；6 章：3×2；7 章及以上先合并章节，或拆为主目录与附录目录。
-- 左上仅写「目录」，不加英文副标题；章节号使用 `Barlow Condensed` 300 字重。
-- 目录中的章节名须和各章节页、页脚、总结与附录保持一致。
-
-### 用户旅程图
-
-用户说“全流程 / 端到端 / 触点 / 情绪曲线 / 各阶段痛点 / journey map”时，使用独立的 `user-journey-skill`。它提供单一的旅程图维护源和可复制样板，固定阶段、触点、行为、情绪、痛点、机会点六行逐列对应；情绪曲线允许逐格和格间留白，但每一条独立线的相邻格公共边界必须同高。对比中的两条线各自连续，彼此无需同高。嵌入本 deck 时仍须保留本 skill 的完整翻页、概览和全屏 runtime。
-
-### 模板与组件入口
-
-- `assets/deck-template.html`：9 页起手 deck，含封面、目录、灰底分析、黑底设计点和完整 runtime。
-- `assets/template-library/index.html`：可复制的高级 pattern 模板库；每页带 `data-template / data-component / data-title` 标记。
-- `references/components.md`：从用户意图到组件的唯一选件路由入口；命中专属组件时优先复用，不要重新手搓近似版式。
-- `references/checklist.md`：完成前逐页执行的质量检查清单。
-
-样例 deck 包含：① 封面 ② 目录（4 章横排）③ 关键指标（多彩渐变胶囊）④ 竞品对照 ⑤ 用户画像·形式一 ⑥ 甘特 roadmap ⑦ 黑底章节封面（调色面板·localStorage 持久记忆）⑧ 黑底设计点·版式①左文右图 ⑨ 黑底设计点·版式②上下堆叠 hero。
-
-> ⚠️ 用户画像有**三套形式（一/二/三），按内容三选一**：正式深描单人→形式一、多角色雷达对比→形式二、白板便利贴速写单人→形式三（详见 `components.md §6a/§6b/§6c`）。
-> ⚠️ 黑底设计点有**两种版式**：①左文右图（要点多）/ ②上下堆叠 hero（大图为主），见 `components.md §8`。
-> ⚠️ 证据逐条讲解用 `evidence-spotlight-matrix`：没有现成内容时可新绘证据矩阵，已有矩阵 / 旅程图 / 流程图 / 截图组 / 架构图时优先保留原内容并叠加聚光灯；问题推导成结论用 `derivation-column-flow`。两者已沉淀在 `assets/template-library/index.html`。
 
 ## 目录结构
 
