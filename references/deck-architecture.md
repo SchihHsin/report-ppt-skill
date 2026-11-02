@@ -79,8 +79,10 @@ if(CTRL){ document.body.classList.add('ctrl'); document.body.dataset.transition=
 ### 居中型页的竖向平衡（`.body-area.vc` + `balanceHeads()`）
 - `.head` 在文档流里占空间，`.foot`/`.ucd` 是绝对定位不占空间——所以"居中型"页（内容是个居中块，如数据卡/甘特/2×2 矩阵/sm2 图文/竞品对照）若只靠 `justify-content:center`，净效果会偏上或偏下，且固定 `padding-bottom:Nvh` 这种猜测值在不同页眉高度/窗口宽高比下都对不上。
 - **正确做法**：给这类页的 `.body-area` 加 `.vc` 修饰类，JS `balanceHeads()` **直接量两个可见空白**——「页眉下沿→内容顶」(`topGap`) 和「内容底→页脚上沿」(`botGap`)——让它们相等。⚠️ **别拿页眉高度当 padding-bottom**（直觉上"页眉占了多少空间就补多少"，试过，系统性补过头：页眉的留白已经是它自己的 `margin-bottom`，不需要重复补偿，真正缺的只是页脚 inset 那一截）。两者之差是 padding 的线性函数（斜率恰为 -1，因为 `justify-content:center` 对称分担任何 padding 变化），所以一步公式即可、不用试错：`newPad = 当前 padding-bottom + (topGap − botGap)`（`resize`、`exitOverview()`、首屏 `requestAnimationFrame` 时重算）。
-- **填满型页不加 `.vc`**：旅程/VOC/画像表格等本身占满整页、不需要居中补偿的页留空，否则会被多余的 `padding-bottom` 挤变形。
+- **VOC 墙作为整体垂直居中**：VOC 卡片组按内容自然定高，在页眉与页脚之间平衡上下留白；`.voc-wall` 不应使用 `flex:1` 撑满主体，否则列里的卡片仍贴顶部。卡片太多无法完整居中时，精简或拆页。其他旅程 / 画像等组件仍按实际内容是否填满主体来选择布局，不按组件名称机械分类。
 - ⚠️ **`.vc` 只解决 padding，不解决 `justify-content`**：若该页内容组是 `flex:0 0 auto`（不撑满高度，如竞品卡+对策条），`.body-area` 基类本身要带 `justify-content:center` 才能整体居中——模板的 `.body-area` 基类已带，自定义页别手滑去掉。
+- **容器和可见内容必须一起检查**：`.voc-wall` 按实际卡片组高度布局（如 `flex:0 1 auto`），再由 `.body-area` 居中；仅给 `.body-area` 加 `.vc` 而保留撑满主体的内容容器，无法让墙内卡片垂直居中。`column-count` 瀑布墙须在实际视口复核分列与阅读顺序；必要时用适合内容的网格布局，不能为了居中破坏排布。
+- **平衡函数必须量到真实边界**：确认 `balanceHeads()` 的选择器匹配该页真实的页眉、页脚和内容组；若使用 `.report-foot` 等自定义页脚须调整选择器，并以实际可见卡片的上下边界验证，不能只看撑满容器的外框。无页脚时以实际底部安全边界作为参照。视窗缩放、字体加载完成及退出概览后重算并检查；空间不足时优先精简或拆页，避免裁切。
 
 ## 多分册 → 单 index.html（推荐工作流）
 

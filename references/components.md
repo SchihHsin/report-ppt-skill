@@ -228,11 +228,13 @@
 
 ## 3. VOC / 用户声音墙
 
+声音墙整体在页眉与页脚之间上下居中。容器按卡片内容自然定高，避免 `flex:1` 撑满主体后卡片贴顶；卡片过多时精简或拆页。调整布局后仍需核对瀑布流分列、阅读顺序与溢出。具体测量见 `deck-architecture.md` 的竖向平衡。
+
 ### CSS 骨架
 
 ```css
 /* ⚠️ 用 column-count 瀑布流，绝不用 flex 列（高度推挤会产生诡异间距）*/
-.voc-wall{flex:1;min-height:0;column-count:4;column-gap:1.1vw}
+.voc-wall{flex:0 1 auto;min-height:0;column-count:4;column-gap:1.1vw}
 .voc-card{break-inside:avoid;margin-bottom:1.1vw;border-radius:15px;padding:1.7vh 1.2vw;
   position:relative;display:flex;flex-direction:column;gap:.95vh}
 /* 引用文字 */

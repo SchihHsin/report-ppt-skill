@@ -75,6 +75,7 @@ description: 生成"产品 / 设计 / 研究汇报"风格的单文件网页 PPT�
 - **卡内标签必须随内容收缩，绝不当整行色条**：分类 tag / chip / badge 默认是文字的紧凑容器，而不是卡片分隔线；用 `display:inline-flex; align-self:flex-start; width:fit-content; max-width:100%`，保留左右内边距和 `border-radius:999px`。**禁止**在标签上写 `width:100%`、`display:block`，或把它放进会 `align-items:stretch` 的列布局却不覆写 `align-self`。标签过长时优先精简为 1--3 个词；确有必要才在自身最大宽度内换行，不能横向撑满整张卡。完整骨架与质检见 `components.md §17`、`checklist.md`。
 - **列布局间距别用 flex 列**做瀑布墙（高度推挤 + `margin-top:auto` 会出诡异间距 bug）→ 用 `column-count`。
 - **⛔ 所有 flex 列 / grid 子项默认带 `min-height:0`（横向再带 `min-width:0`）**：否则子元素不收缩、内容一多就撑破父容器溢出——"等高对不齐 / 某栏比另一栏高 / 卡片气泡越界 / 文字被裁"几乎都是漏了这条（复用 skill 时最隐蔽、最费手调的一类坑）。等高靠 grid `align-items:stretch`；想让某栏吸高度差**只给它一个 `flex:1`、其余 `flex:0 0 auto`**；整块别用 `flex:1` 填满超高屏（4K 注水）→ `flex:0 1 auto`。
+- **VOC 墙整体垂直居中**：声音墙的卡片组按内容高度排布，并在页眉与页脚之间上下居中；不要让墙容器用 `flex:1` 撑满后把卡片留在顶部。卡片多到无法完整、舒适地居中时，精简或拆页。其他组件仍按实际内容高度选择填满或居中，详见 `references/deck-architecture.md` 与 `references/checklist.md`。
 - **绝对定位子元素无视父 padding** → 需要内边距时加一层 `position:absolute;inset:...` 的内层容器。
 - **⛔ 页面标题前默认什么都不放——绝不加装饰性 icon**（复用 skill 时最常翻车的一条）：head 的 `.brand` 槽**默认留空，只有标题 `.ttl`**；**仅当用户明确要 logo 时才加**（`<img class="logo" src="CANNlogo.png">`，深底用 `cann-dark-logo.svg`；用户给了别的真 logo 就换那个）。封面 `.cv-logo` 的大 logo 不在此列（封面照常有）。**严禁**在标题/区块标题前顶 Lucide / 通用 SVG 图标。装饰 icon 仅限个别精调组件内部（如画像 `.pf-h2`），不是通用模式。
 - **logo 用图片、且分深/浅两版按底色选**：深色底（封面 / 黑底页）用白/反白版，浅色底（灰底页 head）用深色/彩色版；**别把深色 logo 放深色底**（看不见），也别手敲文字拼 logo。详见 `components.md §0`。
