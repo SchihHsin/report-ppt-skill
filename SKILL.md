@@ -1,6 +1,6 @@
 ---
 name: report-ppt-skill
-description: 生成"产品 / 设计 / 研究汇报"风格的单文件网页 PPT（纵向 scroll-snap 整页翻页 deck，带概览/全屏交互）。三基调——① 封面：大图作底 + 产品 logo + 标题；② 灰底分析篇：冷灰 + 玻璃折射白卡 + 底部大波浪 + 蓝紫 accent（承载数据洞察 / VOC / 竞品 / 用户旅程 / 用户画像 / 甘特 roadmap）；③ 黑底设计点：纯黑 + 底部渐变光晕 + 渐变标题字（承载问题 / 方案 / 设计点，可一章一色）。统一鸿蒙黑体 + 六档字号 ramp + 渐变色彩 token + 手画优先图表。当用户要做"设计概念汇报 / 研究汇报 / 产品方案汇报 / 数据分析汇报 / 用户研究 PPT / 竞品分析 PPT / roadmap"等偏分析与方案的网页 PPT 时使用。
+description: 生成"产品 / 设计 / 研究汇报"风格的单文件网页 PPT（纵向 scroll-snap 整页翻页 deck，带概览/全屏交互）。三基调——① 封面：大图作底 + 产品 logo + 标题；② 灰底分析篇：冷灰 + 玻璃折射白卡 + 底部大波浪 + 蓝紫 accent（承载数据洞察 / VOC / 竞品 / 用户旅程 / 用户画像 / 甘特 roadmap）；③ 黑底设计点：纯黑 + 底部渐变光晕 + 渐变标题字（承载问题 / 方案 / 设计点，可一章一色）。统一鸿蒙黑体 + 六档字号 ramp + 渐变色彩 token + 按阐释目标选择 ImageGen、真实素材与原生图形。当用户要做"设计概念汇报 / 研究汇报 / 产品方案汇报 / 数据分析汇报 / 用户研究 PPT / 竞品分析 PPT / roadmap"等偏分析与方案的网页 PPT 时使用。
 ---
 
 # Report PPT Skill（汇报材料网页 PPT）
@@ -14,7 +14,7 @@ description: 生成"产品 / 设计 / 研究汇报"风格的单文件网页 PPT�
 - 翻页：**原生纵向 scroll-snap**（`body` 作滚动容器，`.slide` 满屏 `100vw/100vh` + `scroll-snap-align:start;scroll-snap-stop:always`，划时短暂两页、松手吸附到整页）；当前页用 `IntersectionObserver` 判定。键盘 `↑↓←→`/空格/PageUp-Down/Home/End，右侧竖排 `.nav-dots`。
 - **整套 deck runtime（不可拆）**：以 `assets/deck-template.html` 为起点，保留其纵向翻页、底部图标控制栏、右侧导航点、概览、全屏、键盘操作与 URL 页码定位。控制栏默认隐藏，鼠标进入底部区域才出现；概览为按当前视窗比例缩放的缩略图网格，全屏走 Fullscreen API。**不得另写简化文字控制条，也不得只补其中一个功能。**详见 `references/deck-architecture.md`。
 - 自包含：纯 HTML/CSS/SVG，外链仅字体 CDN + 可选图表库；可离线（库 inline 到 `lib/`）。
-- 配图按阐释任务选择：ImageGen 可用于让抽象概念、场景或视觉隐喻更容易理解；精确数据、证据、标签与关系结构使用 HTML / SVG / 图表表达。先判断何种视觉最能解释该页，规则见 `references/chart-selection.md`。
+- 视觉媒介按阐释目标选择：ImageGen 可承担概念、场景、定性发现和视觉隐喻的主要表达；真实截图与素材用于呈现具体产品和证据；HTML / SVG / 图表用于需要精确核对、编辑或交互的信息。同页兼需时组合使用，详见 `references/chart-selection.md`。
 
 ## 三基调（先选基调，再填内容）
 
@@ -54,7 +54,7 @@ description: 生成"产品 / 设计 / 研究汇报"风格的单文件网页 PPT�
    | 从问题推导到结论/问题→机制→做法→结论/几栏推导/把发现收束成行动 | **§16 四栏推导流**（`derivation-column-flow`）|
    | 目录/章节目录/contents/agenda/这一份汇报讲什么/章节概览 | **§18 目录页**（`contents-directory`）|
 6. **套规范**：字号只用 ramp（`references/type-and-color.md`）；小面积语义元素用纯色 `--c-*`，大面积强调面用同色相渐变 `--g-*`，深色大色块统一 `--g-ink`。
-7. **图解优先，按阐释目标选择媒介**：每页先明确希望读者理解什么，再选择表达形式。优先把关系、流程、层级、因果、对照和变化画出来，让图形承担主要解释。根据阐释目标选择媒介：用 ImageGen 呈现场景、类比、空间关系或抽象概念；用 HTML、SVG 或图表表达需要准确核对的数据、证据、界面、技术关系和标签。同页兼需时，用图像建立直观理解，再以原生图形和文字承载准确信息。卡片用于彼此独立的并列信息、原声证据或查阅条目。详见 `references/chart-selection.md` 与 `references/checklist.md`。
+7. **图解优先，按阐释目标选择媒介**：每页先明确希望读者理解什么，再选择表达形式。优先让视觉内容承担主要解释，并按阐释目标选择媒介：ImageGen 可用于概念、场景、定性发现、类比、空间关系和抽象关系，也可作为一页的主要视觉；真实素材用于呈现具体产品与证据；HTML、SVG 或图表用于需要准确核对、编辑或交互的数据、标签、界面和技术关系。同页兼需时，用图像建立直观理解，再以原生图形和文字补足精确信息。卡片用于彼此独立的并列信息、原声证据或查阅条目。详见 `references/chart-selection.md` 与 `references/checklist.md`。
 8. **多分册合并**（可选）：每个基调一个源文件，跑 `build_index.py` 合成单 `index.html`（机制见 `references/deck-architecture.md`）。
 9. **交付前逐页跑质检**：对每一页过一遍 `references/checklist.md`（叙事 / 文案 / 字号 / 溢出 / flex `min-height:0` 卫生 / 对齐 / 图片 / 视口陷阱），按表里的"正确做法"改，别靠肉眼微调凑——**这是生成效果好坏的关键一步**。
 10. **交付**：浏览器 `open` 自检；每次改完 **git push**（用户偏好）。
@@ -98,6 +98,6 @@ description: 生成"产品 / 设计 / 研究汇报"风格的单文件网页 PPT�
 - `references/narrative-and-copy.md` — 叙事模式、章节承接、证据 / 推论 / 方案边界、核心与附录取舍，以及结论导向的标题与方案页文案句法；**不改变本 skill 既有封面和视觉规范**
 - `references/components.md` — 唯一选件路由入口 + 组件骨架：胶囊条 / 甘特 / VOC 墙 / **用户旅程(§4)** / **头像生成与使用规范(§3a)** / 竞品对照 / 用户画像三形式 / KPI / glass card / head / 评分热力矩阵 / 分层架构 / 数据突出卡 / 生态干系人地图(§12) / 2×2 机会矩阵(§13) / 图+文 sm2 模式(§14) / 证据聚光灯(§15) / 四栏推导流(§16) / 目录页(§18)。用户旅程样板与字段规则随本 skill 发布。
 - `references/deck-architecture.md` — 单文件 deck 机制 + 多分册 `build_index.py` 合并模式
-- `references/chart-selection.md` — 手画优先原则 + ECharts/ApexCharts 选型
+- `references/chart-selection.md` — ImageGen、真实素材、原生图形与 ECharts / ApexCharts 的选型
 - `references/pitfalls.md` — 踩坑清单（间距 / 头像 / SVG / 甘特 / 合并）
 - `references/checklist.md` — **交付前每页必跑的质检清单**（字号 / 溢出 / flex `min-height:0` / 对齐 / 图片 / 视口比例陷阱 / 测量代替猜），配 `rg` + 无头截图自查——专治"生成出来要大量手调对齐居中溢出"
