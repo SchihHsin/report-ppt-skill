@@ -22,7 +22,7 @@
 ## 头像 / 图片
 
 - 头像的生成、落盘和容器规则统一见 `components.md §3a`；这里仅检查：最终 deck 不热链头像服务，未授权的真实人物不使用照片。
-- **不能生成 AI 图**：背景大图让用户给，或 `curl` 网图。
+- **不要把生成图误当事实图**：ImageGen 可按 `chart-selection.md` 的阐释判断用于概念场景与视觉隐喻；真实界面、文档截图、数据图和技术关系须来自可核对来源或用 HTML / SVG 精确绘制。概念图要标示为示意，不让生成画面替代证据。
 - 竞品/产品截图：`width:100%;height:auto` 不裁切 + 圆角 + 小 padding；三卡等高用 `align-items:stretch`，图 `order:2;margin-top:auto` 沉到卡底对齐。
 
 ## SVG

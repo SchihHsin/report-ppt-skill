@@ -14,7 +14,7 @@ description: 生成"产品 / 设计 / 研究汇报"风格的单文件网页 PPT�
 - 翻页：**原生纵向 scroll-snap**（`body` 作滚动容器，`.slide` 满屏 `100vw/100vh` + `scroll-snap-align:start;scroll-snap-stop:always`，划时短暂两页、松手吸附到整页）；当前页用 `IntersectionObserver` 判定。键盘 `↑↓←→`/空格/PageUp-Down/Home/End，右侧竖排 `.nav-dots`。
 - **整套 deck runtime（不可拆）**：以 `assets/deck-template.html` 为起点，保留其纵向翻页、底部图标控制栏、右侧导航点、概览、全屏、键盘操作与 URL 页码定位。控制栏默认隐藏，鼠标进入底部区域才出现；概览为按当前视窗比例缩放的缩略图网格，全屏走 Fullscreen API。**不得另写简化文字控制条，也不得只补其中一个功能。**详见 `references/deck-architecture.md`。
 - 自包含：纯 HTML/CSS/SVG，外链仅字体 CDN + 可选图表库；可离线（库 inline 到 `lib/`）。
-- 不能生成 AI 图：背景大图需用户提供，或 `curl` 下载网图（Wikimedia / YouTube 缩略图 `img.youtube.com/vi/<id>/maxresdefault.jpg`）。
+- 配图按阐释任务选择：ImageGen 可用于让抽象概念、场景或视觉隐喻更容易理解；精确数据、证据、标签与关系结构使用 HTML / SVG / 图表表达。先判断何种视觉最能解释该页，规则见 `references/chart-selection.md`。
 
 ## 三基调（先选基调，再填内容）
 
