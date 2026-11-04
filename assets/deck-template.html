@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>汇报 PPT 模板</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=Noto+Sans+SC:wght@200;300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400&family=Inter:wght@200;300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=Noto+Sans+SC:wght@200;300;400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/IKKI2000/harmonyos-fonts@master/css/harmonyos_sans_sc.css">
 <style>
 /* ===== 设计 token ===== */
@@ -85,6 +85,20 @@ body.overview.ctrl .slide{position:relative!important;opacity:1!important;visibi
 .section-tabs{display:flex;align-items:center;gap:5px;flex:0 0 auto;margin-left:auto;padding:.45vh .48vw;border:1px solid rgba(127,137,157,.18);border-radius:999px;background:rgba(255,255,255,.46)}
 .section-tabs span{padding:.42vh .6vw;border-radius:999px;font:600 var(--fs-sm)/1.2 'HarmonyOS Sans SC','Noto Sans SC',sans-serif;color:var(--ink-3);white-space:nowrap}
 .section-tabs span.active{background:var(--g-ink);color:#fff;box-shadow:0 3px 10px -6px rgba(20,25,35,.5)}
+/* 目录：4 章单行；3 / 5 / 6 章的完整数量路由见 components.md §18 与模板库。 */
+.contents-slide .body-area{justify-content:center}
+.contents-directory{width:min(1120px,100%);margin:0 auto;display:grid;gap:1vw;align-items:stretch}
+.contents-directory.contents-4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.contents-slide .directory-card{--dir:var(--c-indigo);position:relative;min-width:0;min-height:31vh;overflow:hidden;padding:1.8vh 1.25vw 1.35vh;display:flex;flex-direction:column;background:rgba(255,255,255,.58);border:1px solid rgba(255,255,255,.88);border-radius:14px;box-shadow:0 18px 42px -25px rgba(20,25,35,.22),inset 0 1px 0 rgba(255,255,255,.94)}
+.contents-slide .directory-card::after{content:"";position:absolute;right:-25%;bottom:-24%;width:90%;height:46%;background:radial-gradient(ellipse at center,color-mix(in srgb,var(--dir) 16%,transparent),transparent 70%);pointer-events:none}
+.contents-slide .directory-card.research{--dir:var(--c-indigo)}.contents-slide .directory-card.competitor{--dir:var(--c-blue)}.contents-slide .directory-card.persona{--dir:var(--c-teal)}.contents-slide .directory-card.roadmap{--dir:var(--c-pink)}
+.contents-slide .directory-no,.contents-slide .directory-name,.contents-slide .directory-en,.contents-slide .directory-items,.contents-slide .directory-note{position:relative;z-index:1}
+.contents-slide .directory-no{font-family:'Barlow Condensed','Inter',sans-serif;font-size:clamp(54px,5.4vw,86px);line-height:.82;letter-spacing:-.035em;font-weight:300;color:var(--dir);text-shadow:0 0 28px color-mix(in srgb,var(--dir) 24%,transparent)}
+.contents-slide .directory-name{margin-top:1.35vh;font-size:var(--fs-h2);line-height:1.2;font-weight:950;color:var(--ink);overflow-wrap:anywhere}
+.contents-slide .directory-en{margin-top:.42vh;font-family:'Inter',sans-serif;font-size:var(--fs-sm);font-weight:700;color:color-mix(in srgb,var(--dir) 76%,#596575);overflow-wrap:anywhere}
+.contents-slide .directory-items{display:grid;gap:.52vh;margin-top:2.65vh}.contents-slide .directory-items span{font-size:var(--fs-body);line-height:1.36;color:var(--ink-2);overflow-wrap:anywhere}
+.contents-slide .directory-items span::before{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;vertical-align:middle;margin:-2px .48em 0 0;background:var(--dir);box-shadow:0 0 12px color-mix(in srgb,var(--dir) 42%,transparent)}
+.contents-slide .directory-note{margin-top:auto;padding-top:1.25vh;border-top:1px solid rgba(47,61,99,.14);font-size:var(--fs-sm);font-weight:900;line-height:1.35;color:color-mix(in srgb,var(--dir) 72%,#465364);overflow-wrap:anywhere}
 /* padding-bottom 给绝对定位的 .foot/.ucd 留位，否则居中卡会紧贴页尾（见 pitfalls.md）*/
 .body-area{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center}
 /* 居中型页（内容是个居中块、四周留白）加 .vc：JS balanceHeads() 按实际页眉高度补 padding-bottom，
@@ -307,7 +321,18 @@ body.overview #panel,body.overview #toggle{display:none!important}
     </div>
   </section>
 
-  <!-- ② 灰底：关键指标（多彩渐变胶囊）-->
+  <!-- ② 灰底：目录（4 章单行；目录页不放章节 Tab） -->
+  <section id="contents-directory" class="slide s-gray contents-slide" data-template="contents-directory">
+    <div class="head"><div class="head-l"><div class="brand"><span class="ttl">目录</span></div></div></div>
+    <div class="body-area"><div class="contents-directory contents-4">
+      <article class="directory-card research"><div class="directory-no">01</div><h2 class="directory-name">用户研究</h2><div class="directory-en">User Research</div><div class="directory-items"><span>核心障碍</span><span>关键证据</span></div><div class="directory-note">确认问题与优先改善方向</div></article>
+      <article class="directory-card competitor"><div class="directory-no">02</div><h2 class="directory-name">竞品对照</h2><div class="directory-en">Competitive Analysis</div><div class="directory-items"><span>标杆能力</span><span>体验差距</span></div><div class="directory-note">找到可借鉴的体验范式</div></article>
+      <article class="directory-card persona"><div class="directory-no">03</div><h2 class="directory-name">用户画像</h2><div class="directory-en">User Persona</div><div class="directory-items"><span>典型角色</span><span>任务场景</span></div><div class="directory-note">明确关键用户的真实诉求</div></article>
+      <article class="directory-card roadmap"><div class="directory-no">04</div><h2 class="directory-name">实施路线</h2><div class="directory-en">Delivery Roadmap</div><div class="directory-items"><span>阶段计划</span><span>协作依赖</span></div><div class="directory-note">让方案按节奏进入落地</div></article>
+    </div></div>
+  </section>
+
+  <!-- ③ 灰底：关键指标（多彩渐变胶囊）-->
   <section class="slide s-gray">
     <div class="head">
       <div class="head-l">
@@ -327,7 +352,7 @@ body.overview #panel,body.overview #toggle{display:none!important}
     </div>
   </section>
 
-  <!-- ③ 灰底：竞品对照（三卡论述 + 图沉底 + 对策条）-->
+  <!-- ④ 灰底：竞品对照（三卡论述 + 图沉底 + 对策条）-->
   <section class="slide s-gray">
     <div class="head">
       <div class="head-l">

@@ -183,6 +183,11 @@ assets/
 
 ## 更新日志
 
+### 2026-11 — 起手模板补齐四章目录页
+
+- `assets/deck-template.html` 现在包含完整的四章目录页，放在封面之后；页眉仅保留「目录」，并加载 `Barlow Condensed` 300 字重显示章节编号。
+- 模板库的六章目录预览移除了右上角的内部模板标识，呈现方式与目录页规范一致；3 / 4 / 5 / 6 章的布局规则仍以 §18 为准。
+
 ### 2026-08 — 用户旅程回归内置组件
 
 - 用户旅程不再要求安装或调用独立 Skill；`report-ppt-skill` 内置 `user-journey` 组件、可复制的 `assets/user-journey-template.html` 与 `references/journey-pattern.md`。
